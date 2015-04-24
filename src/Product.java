@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-
 /**
  *
  * @author ASUS X202E
@@ -72,7 +71,16 @@ abstract class Product {
         this.index = index;
     }
     
-    abstract void upgrade();
+    
+    public void upgrade() {
+        if (getLevel()==1) {
+            changeLevel(2);
+        } else if (getLevel()==2) {
+            changeLevel(3);
+        }
+    }
+    
+    abstract void changeLevel(int lvl);
 
     /**
      * @return the level
