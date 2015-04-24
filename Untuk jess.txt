@@ -1,0 +1,11 @@
+Kalo langsung load game:
+Player P = new Player();
+P.loadPlayer(name, coins, toylvl, soaplvl, foodlvl, foodqty);
+P.setPet(new Animal());
+//itung2 pengurangan hunger, happiness dll
+P.getPet().loadAnimal(name, type, hunger, happiness, health, hygiene, state);
+
+Kalo udah ada game abis itu load:
+P.loadPlayer(....);
+//itung2 kondisi hewan
+P.getPet().loadAnimal(....);
