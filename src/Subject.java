@@ -1,5 +1,4 @@
 
-import java.util.Observer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,8 +11,8 @@ import java.util.Observer;
  */
 public interface Subject {
     //methods to register and unregister observers
-    public void register(Observer obj);
-    public void unregister(Observer obj);
+    public void registerObserver(Observer obj);
+    public void unregisterObserver(Observer obj);
     
     //methods to notify observers of change
     public void notifyObserver();
