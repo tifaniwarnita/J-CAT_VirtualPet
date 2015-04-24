@@ -8,7 +8,8 @@
  *
  * @author ASUS X202E
  */
-public class InventoryView extends javax.swing.JFrame {
+public class InventoryView extends javax.swing.JFrame implements Observer {
+    private Player P;
     /**
      * Creates new form InventoryView
      */
@@ -52,31 +53,54 @@ public class InventoryView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 251, 213));
+        setMaximumSize(new java.awt.Dimension(800, 480));
+        setMinimumSize(new java.awt.Dimension(800, 480));
+        getContentPane().setLayout(null);
 
         foodImage.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS X202E\\Documents\\GitHub\\J-CAT_VirtualPet\\design\\dogfoodinv.png")); // NOI18N
+        getContentPane().add(foodImage);
+        foodImage.setBounds(90, 349, 100, 100);
+        foodImage.getAccessibleContext().setAccessibleName("Food");
 
         toyImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dogballinv.png"))); // NOI18N
+        getContentPane().add(toyImage);
+        toyImage.setBounds(90, 109, 100, 100);
 
         soapImage.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS X202E\\Documents\\GitHub\\J-CAT_VirtualPet\\design\\soapinv.png")); // NOI18N
+        getContentPane().add(soapImage);
+        soapImage.setBounds(90, 229, 100, 100);
 
         soapName.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 24)); // NOI18N
         soapName.setForeground(new java.awt.Color(184, 86, 120));
         soapName.setText("Medium Soap");
+        getContentPane().add(soapName);
+        soapName.setBounds(220, 229, 149, 32);
+        soapName.getAccessibleContext().setAccessibleName("Soap Name");
 
         inventoryTitle.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 48)); // NOI18N
         inventoryTitle.setForeground(new java.awt.Color(215, 198, 181));
         inventoryTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventorytitle.png"))); // NOI18N
+        getContentPane().add(inventoryTitle);
+        inventoryTitle.setBounds(268, 11, 319, 87);
 
         toyName.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 24)); // NOI18N
         toyName.setForeground(new java.awt.Color(184, 86, 120));
         toyName.setText("Medium Toy");
+        getContentPane().add(toyName);
+        toyName.setBounds(220, 109, 134, 32);
+        toyName.getAccessibleContext().setAccessibleName("Toy Name");
 
         foodName.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 24)); // NOI18N
         foodName.setForeground(new java.awt.Color(184, 86, 120));
         foodName.setText("Medium Food");
+        getContentPane().add(foodName);
+        foodName.setBounds(220, 349, 146, 27);
+        foodName.getAccessibleContext().setAccessibleName("Food Name");
 
         soapDesc.setFont(new java.awt.Font("Quicksand Bold", 0, 18)); // NOI18N
         soapDesc.setText("Increases hygiene by 20 points");
+        getContentPane().add(soapDesc);
+        soapDesc.setBounds(220, 264, 277, 19);
 
         upgradeToyButton.setBackground(new java.awt.Color(46, 112, 185));
         upgradeToyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/upgradebutton.png"))); // NOI18N
@@ -87,52 +111,90 @@ public class InventoryView extends javax.swing.JFrame {
                 upgradeToyButtonMouseClicked(evt);
             }
         });
+        getContentPane().add(upgradeToyButton);
+        upgradeToyButton.setBounds(220, 169, 108, 42);
+        upgradeToyButton.getAccessibleContext().setAccessibleName("UpgradeToyButton");
 
         buyFoodButton.setBackground(new java.awt.Color(46, 112, 185));
         buyFoodButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buybutton.png"))); // NOI18N
         buyFoodButton.setBorderPainted(false);
         buyFoodButton.setContentAreaFilled(false);
+        buyFoodButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buyFoodButtonMouseClicked(evt);
+            }
+        });
+        getContentPane().add(buyFoodButton);
+        buyFoodButton.setBounds(220, 412, 72, 38);
 
         foodDesc.setFont(new java.awt.Font("Quicksand Bold", 0, 18)); // NOI18N
         foodDesc.setText("Reduces hunger by 20 points");
+        getContentPane().add(foodDesc);
+        foodDesc.setBounds(220, 382, 259, 19);
 
         toyDesc.setFont(new java.awt.Font("Quicksand Bold", 0, 18)); // NOI18N
         toyDesc.setText("Increases happiness by 20 points");
+        getContentPane().add(toyDesc);
+        toyDesc.setBounds(220, 144, 294, 19);
 
         upgradeToyPrice.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 18)); // NOI18N
         upgradeToyPrice.setForeground(new java.awt.Color(233, 181, 70));
         upgradeToyPrice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coinsmall.png"))); // NOI18N
         upgradeToyPrice.setText("200");
+        getContentPane().add(upgradeToyPrice);
+        upgradeToyPrice.setBounds(332, 169, 66, 42);
 
         currentCoins.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 32)); // NOI18N
         currentCoins.setForeground(new java.awt.Color(233, 181, 70));
         currentCoins.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coinbig.png"))); // NOI18N
         currentCoins.setText("125");
+        getContentPane().add(currentCoins);
+        currentCoins.setBounds(655, 33, 96, 43);
 
         upgradeSoapButton.setBackground(new java.awt.Color(46, 112, 185));
         upgradeSoapButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/upgradebutton.png"))); // NOI18N
         upgradeSoapButton.setBorderPainted(false);
         upgradeSoapButton.setContentAreaFilled(false);
+        upgradeSoapButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                upgradeSoapButtonMouseClicked(evt);
+            }
+        });
+        getContentPane().add(upgradeSoapButton);
+        upgradeSoapButton.setBounds(220, 289, 108, 42);
 
         upgradeSoapPrice.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 18)); // NOI18N
         upgradeSoapPrice.setForeground(new java.awt.Color(233, 181, 70));
         upgradeSoapPrice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coinsmall.png"))); // NOI18N
         upgradeSoapPrice.setText("200");
+        getContentPane().add(upgradeSoapPrice);
+        upgradeSoapPrice.setBounds(332, 289, 66, 42);
 
         buyFoodPrice.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 18)); // NOI18N
         buyFoodPrice.setForeground(new java.awt.Color(233, 181, 70));
         buyFoodPrice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coinsmall.png"))); // NOI18N
         buyFoodPrice.setText("8");
+        getContentPane().add(buyFoodPrice);
+        buyFoodPrice.setBounds(296, 412, 40, 42);
 
         upgradeFoodButton.setBackground(new java.awt.Color(46, 112, 185));
         upgradeFoodButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/upgradebutton.png"))); // NOI18N
         upgradeFoodButton.setBorderPainted(false);
         upgradeFoodButton.setContentAreaFilled(false);
+        upgradeFoodButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                upgradeFoodButtonMouseClicked(evt);
+            }
+        });
+        getContentPane().add(upgradeFoodButton);
+        upgradeFoodButton.setBounds(354, 412, 108, 42);
 
         upgradeFoodPrice.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 18)); // NOI18N
         upgradeFoodPrice.setForeground(new java.awt.Color(233, 181, 70));
         upgradeFoodPrice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coinsmall.png"))); // NOI18N
         upgradeFoodPrice.setText("200");
+        getContentPane().add(upgradeFoodPrice);
+        upgradeFoodPrice.setBounds(466, 412, 66, 42);
 
         backButton.setBackground(new java.awt.Color(46, 112, 185));
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backbutton.png"))); // NOI18N
@@ -143,115 +205,8 @@ public class InventoryView extends javax.swing.JFrame {
                 backButtonMouseClicked(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(toyImage)
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(toyDesc)
-                                    .addComponent(toyName)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(upgradeToyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(upgradeToyPrice))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(soapImage)
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(soapDesc)
-                                    .addComponent(soapName)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(upgradeSoapButton, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(upgradeSoapPrice))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(foodImage)
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(foodName)
-                                    .addComponent(foodDesc)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(buyFoodButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(buyFoodPrice)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(upgradeFoodButton, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(upgradeFoodPrice)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
-                        .addComponent(inventoryTitle)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                        .addComponent(currentCoins)
-                        .addGap(49, 49, 49))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(inventoryTitle))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(currentCoins)))
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(toyImage)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(toyName)
-                        .addGap(3, 3, 3)
-                        .addComponent(toyDesc)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(upgradeToyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(upgradeToyPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(soapImage)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(soapName)
-                        .addGap(3, 3, 3)
-                        .addComponent(soapDesc)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(upgradeSoapButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(upgradeSoapPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(foodImage)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(foodName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(foodDesc)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(upgradeFoodButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buyFoodPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buyFoodButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(upgradeFoodPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(26, Short.MAX_VALUE))
-        );
-
-        foodImage.getAccessibleContext().setAccessibleName("Food");
-        soapName.getAccessibleContext().setAccessibleName("Soap Name");
-        toyName.getAccessibleContext().setAccessibleName("Toy Name");
-        foodName.getAccessibleContext().setAccessibleName("Food Name");
-        upgradeToyButton.getAccessibleContext().setAccessibleName("UpgradeToyButton");
+        getContentPane().add(backButton);
+        backButton.setBounds(90, 26, 108, 42);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -261,8 +216,20 @@ public class InventoryView extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonMouseClicked
 
     private void upgradeToyButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_upgradeToyButtonMouseClicked
-        
+        P.upgradeToy();
     }//GEN-LAST:event_upgradeToyButtonMouseClicked
+
+    private void upgradeSoapButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_upgradeSoapButtonMouseClicked
+        P.upgradeSoap();
+    }//GEN-LAST:event_upgradeSoapButtonMouseClicked
+
+    private void buyFoodButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buyFoodButtonMouseClicked
+        P.buyFood(1);
+    }//GEN-LAST:event_buyFoodButtonMouseClicked
+
+    private void upgradeFoodButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_upgradeFoodButtonMouseClicked
+        P.upgradeFood();
+    }//GEN-LAST:event_upgradeFoodButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -297,6 +264,52 @@ public class InventoryView extends javax.swing.JFrame {
                 new InventoryView().setVisible(true);
             }
         });
+    }
+    
+    @Override
+    public void update(Object o) {
+        String message=(String)o;
+        switch (message) {
+            case "UPGRADETOY":
+                currentCoins.setText(""+P.getCoins());
+                toyName.setText(P.getToy().getName());
+                toyDesc.setText(P.getToy().getDescription());
+                if (P.getToy().getLevel()==3) {
+                    upgradeToyButton.setVisible(false);
+                    upgradeToyPrice.setVisible(false);
+                } else {
+                    upgradeToyPrice.setText(""+P.getToy().getUpgradePrice());
+                }   break;
+            case "UPGRADESOAP":
+                currentCoins.setText(""+P.getCoins());
+                soapName.setText(P.getSoap().getName());
+                soapDesc.setText(P.getSoap().getDescription());
+                if (P.getSoap().getLevel()==3) {
+                    upgradeSoapButton.setVisible(false);
+                    upgradeSoapPrice.setVisible(false);
+                } else {
+                    upgradeSoapPrice.setText(""+P.getSoap().getUpgradePrice());
+                }   break;
+            case "UPGRADEFOOD":
+                currentCoins.setText(""+P.getCoins());
+                foodName.setText(P.getFood().getName()+" (Qty: "+P.getFood().getQuantity()+")");
+                foodDesc.setText(P.getFood().getDescription());
+                if (P.getFood().getLevel()==3) {
+                    upgradeFoodButton.setVisible(false);
+                    upgradeFoodPrice.setVisible(false);
+                } else {
+                    upgradeFoodPrice.setText(""+P.getFood().getUpgradePrice());
+                }   break;
+            case "BUYFOOD":
+                currentCoins.setText(""+P.getCoins());
+                foodName.setText(P.getFood().getName()+" (Qty: "+P.getFood().getQuantity()+")");
+                break;
+        }
+    }
+
+    @Override
+    public void setSubject(Subject s) {
+        this.P = (Player)s;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

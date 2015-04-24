@@ -27,7 +27,15 @@ public class Food extends Product {
      */
     @Override
     public void changeLevel(int lvl) {
-        if (lvl==2) {
+        if (lvl==1) {
+            setName("Small Food");
+            setDescription("Decreases hunger by 10 points");
+            setUpgradePrice(100);
+            setIndex(0.1);
+            setLevel(1);
+            setCurrentPrice(5);
+        }
+        else if (lvl==2) {
             setName("Medium Food");
             setDescription("Decreases hunger by 20 points");
             setUpgradePrice(200);

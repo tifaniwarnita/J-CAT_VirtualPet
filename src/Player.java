@@ -9,13 +9,23 @@ import java.util.Random;
  *
  * @author ASUS X202E
  */
-public class Player {
-    private int coins;
+public class Player implements Subject {
     private String playerName;
+    private int coins;
     private Animal pet;
     private ArrayList<Product> productCollection = new ArrayList<>();
     private Random rand = new Random();
+    private ArrayList<Observer> observers = new ArrayList<>();
+    private boolean changed;
+    private final Object MUTEX= new Object();
 
+    public Player() {
+        this.coins = 0;
+        this.playerName = "";
+        productCollection.add(new Toy());
+        productCollection.add(new Soap());
+        productCollection.add(new Food());
+    }
     public Player(String name) {
         this.coins = 0;
         this.playerName = name;
@@ -24,12 +34,13 @@ public class Player {
         productCollection.add(new Food());
     }
     
-    public void loadPlayer(int _coins, int toylevel, int soaplevel, int foodlevel, int foodqty) {
+    public void loadPlayer(String _name, int _coins, int toylevel, int soaplevel, int foodlevel, int foodqty) {
+        setPlayerName(_name);
         setCoins(_coins);
-        if (toylevel>1) getToy().changeLevel(toylevel);
-        if (soaplevel>1) getSoap().changeLevel(soaplevel);
-        if (foodlevel>1) getFood().changeLevel(foodlevel);
-        if (foodqty>0) getFood().setQuantity(foodqty);
+        getToy().changeLevel(toylevel);
+        getSoap().changeLevel(soaplevel);
+        getFood().changeLevel(foodlevel);
+        getFood().setQuantity(foodqty);
     }
     /**
      * @return the coins
@@ -54,34 +65,51 @@ public class Player {
             getPet().eatFood(getFood());
             getFood().updateQuantity(-1);
             setCoins(getCoins()+rand.nextInt((int)(getFood().getCurrentPrice()*1.5))+1);
-            //notify success
-        }
-        else {
-            //notify fail
+            changed = true;
+            notifyObservers("FEEDPET");
         }
     }
     
     void cleanPet() {
-        getPet().cleanBody(getSoap());
-       setCoins(getCoins()+rand.nextInt((int)(getSoap().getIndex()+0.1)*50)+1);
-       //notify
+        if (pet.getHygiene()<100) {
+           getPet().cleanBody(getSoap());
+           setCoins(getCoins()+rand.nextInt((int)(getSoap().getIndex()+0.1)*50)+1);
+           changed = true;
+           notifyObservers("CLEANPET");
+        }
     }
     
     void playPet() {
-        getPet().playGame(getToy()); 
-       setCoins(getCoins()+rand.nextInt((int)(getToy().getIndex()+0.1)*50)+1);
-       //notify
+        if (pet.getHappiness()<100) {
+            getPet().playGame(getToy()); 
+            setCoins(getCoins()+rand.nextInt((int)(getToy().getIndex()+0.1)*50)+1);
+            changed = true;
+            notifyObservers("PLAYPET");
+        }
     }
     
     
-    public void upgradeProduct(int i) {
-        if (coins>=productCollection.get(i).getUpgradePrice()) {
-            coins-=productCollection.get(i).getUpgradePrice();
-            productCollection.get(i).upgrade();
-            //notify success message
+    public void upgradeFood() {
+        if (coins>=getFood().getUpgradePrice()) {
+            coins-=getFood().getUpgradePrice();
+            getFood().upgrade();
+            notifyObservers("UPGRADEFOOD");
         }
-        else {
-            //notify fail message
+    }
+    
+    public void upgradeSoap() {
+        if (coins>=getSoap().getUpgradePrice()) {
+            coins-=getSoap().getUpgradePrice();
+            getSoap().upgrade();
+            notifyObservers("UPGRADESOAP");
+        }
+    }
+    
+    public void upgradeToy() {
+        if (coins>=getToy().getUpgradePrice()) {
+            coins-=getToy().getUpgradePrice();
+            getToy().upgrade();
+            notifyObservers("UPGRADETOY");
         }
     }
     
@@ -89,10 +117,7 @@ public class Player {
         if (coins>=getFood().getCurrentPrice()*qty) {
             getFood().updateQuantity(qty);
             coins -= getFood().getCurrentPrice()*qty;
-            //notify success
-        }
-        else {
-            //notify fail
+            notifyObservers("BUYFOOD");
         }
     }
 
@@ -135,4 +160,41 @@ public class Player {
     public void setPet(Animal pet) {
         this.pet = pet;
     }
+    
+    @Override
+    public void registerObserver(Observer ob) {
+        if(ob == null) throw new NullPointerException("Null Observer");
+        synchronized (MUTEX) {
+        if(!observers.contains(ob)) {
+            observers.add(ob);
+            ob.setSubject(this);
+        }
+        }
+    }
+    
+    @Override
+    public void unregisterObserver(Observer ob) {
+        synchronized (MUTEX) {
+            observers.remove(ob);
+            ob.setSubject(null);
+        }
+    }
+    
+    @Override
+    public void notifyObservers(Object object) {
+        String message = (String)object;
+        ArrayList<Observer> observersLocal = null;
+        //synchronization is used to make sure any observer registered after message is received is not notified
+        synchronized (MUTEX) {
+            if (!changed)
+                return;
+            observersLocal = new ArrayList<>(this.observers);
+            this.changed=false;
+        }
+        for (Observer ob : observersLocal) {
+            ob.update(message);
+        }
+    }
+    
+    
 }
