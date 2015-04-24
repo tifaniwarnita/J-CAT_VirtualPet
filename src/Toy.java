@@ -26,7 +26,7 @@ public class Toy extends Product {
             setIndex(0.1);
             setLevel(1);
         }
-        if (lvl==2) {
+        else if (lvl==2) {
             setName("Medium Toy");
             setDescription("Increases happiness by 20 points");
             setUpgradePrice(200);
