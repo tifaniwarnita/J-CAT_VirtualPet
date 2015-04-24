@@ -1,7 +1,6 @@
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,14 +23,14 @@ public class Animal implements Subject{
     private String type;
     private final Object MUTEX = new Object();
     private boolean changed;
-    private String message; //TODO
+    private String message;
     
     /**
      *
      * @param name adalah nama binatang yang akan dibuat
      * @param category adalah jenis binatang yang akan dibuat (misalnya kucing atau anjing)
      */
-    public Animal (String name, String category) {
+    public Animal (String name, String type) {
         this.name = name;
         this.hunger = 100;
         this.happiness = 100;
@@ -39,27 +38,50 @@ public class Animal implements Subject{
         this.hygiene = 100;
         this.state = 0;
         //Animal View
-        this.type = category;
+        this.type = type;
+        this.message = calculateHappiness();
         this.observers = new ArrayList<>();
+        if (type.equals("Cat"))
+            this.observers.add(new CatView());
+        else if (type.equals("Dog"))
+            this.observers.add(new CatView());
+        this.changed = false; //TODO
+    }
+    
+    public Animal (String name, String type, int hunger, int happiness, int health, int hygiene, int state) {
+        this.name = name;
+        this.hunger = hunger;
+        this.happiness = happiness;
+        this.health = health;
+        this.hygiene = hygiene;
+        this.state = state;
+        //Animal View
+        this.type = type;
+        this.message = calculateHappiness();
+        this.observers = new ArrayList<>();
+        if (type.equals("Cat"))
+            this.observers.add(new CatView());
+        else if (type.equals("Dog"))
+            this.observers.add(new CatView());
         this.changed = false; //TODO
     }
 
     /**
-     * @return nama binatang
+     * @return the name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @param name nama binatang yang baru
+     * @param name the name to set
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * @return status tingkat kelaparan binatang
+     * @return the hunger
      */
     public int getHunger() {
         return hunger;
@@ -129,6 +151,20 @@ public class Animal implements Subject{
     }
 
     /**
+     * @return the observers
+     */
+    public List<Observer> getObservers() {
+        return observers;
+    }
+
+    /**
+     * @param observers the observers to set
+     */
+    public void setObservers(List<Observer> observers) {
+        this.observers = observers;
+    }
+
+    /**
      * @return the type
      */
     public String getType() {
@@ -140,6 +176,44 @@ public class Animal implements Subject{
      */
     public void setType(String type) {
         this.type = type;
+    }
+
+    /**
+     * @return the changed
+     */
+    public boolean isChanged() {
+        return changed;
+    }
+
+    /**
+     * @param changed the changed to set
+     */
+    public void setChanged(boolean changed) {
+        this.changed = changed;
+    }
+
+    /**
+     * @return the message
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * @param message the message to set
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    
+    private String calculateHappiness() {
+        int totalStatus = this.getHappiness() + this.getHealth() + this.getHunger() + this.getHygiene();
+        if (totalStatus > 250)
+            return "Happy";
+        else if (totalStatus > 140)
+            return "Normal";
+        else
+            return "Sad";
     }
     
     public void performMovement() {
@@ -162,10 +236,14 @@ public class Animal implements Subject{
     }
     
     public void playGame(Toy t) {
-        this.setHappiness(this.getHappiness()+t.getIndex()*100);
+        this.setHappiness((int) this.getHappiness()+t.getIndex()*100);
         if (this.getHappiness()>100)
             this.setHappiness(100);
         this.changed = true;
+    }
+    
+    private void calculateCondition() {
+        
     }
     
     public void sleep() {
@@ -210,7 +288,7 @@ public class Animal implements Subject{
             this.changed = false;
         }
         for (Observer obj : observersLocal) {
-            // TODO obj.notify();
+            obj.update(this.message);
         }
     }
 
