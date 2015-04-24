@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package virtualpet;
 
 /**
  *
@@ -15,7 +14,7 @@ public class Animal {
     private int happiness;
     private int health;
     private int hygiene;
-    private int state;
+    private int state; //bangun = 0, tidur = 1
     //private View AnimalView;
     private String type;
     
@@ -30,27 +29,27 @@ public class Animal {
         this.happiness = 100;
         this.health = 100;
         this.hygiene = 100;
-        this.state = 100;
+        this.state = 0;
         //Animal View
         this.type = category;
     }
 
     /**
-     * @return the name
+     * @return nama binatang
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @param name the name to set
+     * @param name nama binatang yang baru
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * @return the hunger
+     * @return status tingkat kelaparan binatang
      */
     public int getHunger() {
         return hunger;
@@ -133,18 +132,47 @@ public class Animal {
         this.type = type;
     }
     
-    /* public void performMovement() {
+    public void performMovement() {
         //TODO
     }
     
-    public void eatFood(Food s) {
-        this.setHunger(this.getHunger()+f.getIndex()*100);
+    public void eatFood(Food f) {
+        this.setHunger((int) (this.getHunger()+f.getIndex()*100));
         if (this.getHunger()>100)
             this.setHunger(100);
     }
     
     public void cleanBody(Soap s) {
-        this.setHygiene
+        this.setHygiene((int) (this.getHygiene()+s.getIndex()*100));
+        if (this.getHygiene()>100)
+            this.setHygiene(100);
     }
-    */
+    
+    public void consumePotion() {
+        //TODO (removed?)
+    }
+    
+    public void sleep() {
+        this.state = 1;
+    }
+    
+    public void wakeUp() {
+        this.state = 0;
+    }
+    
+    public void reduceAllStatus() {
+        //TODO
+    }
+    
+    public void notifyObserver() {
+        //TODO
+    }
+    
+    public void registerObserver() {
+        //TODO
+    }
+    
+    public void unregisterObserver() {
+        //TODO
+    }
 }
