@@ -41,10 +41,7 @@ public class Animal implements Subject{
         this.type = type;
         this.message = calculateHappiness();
         this.observers = new ArrayList<>();
-        if (type.equals("Cat"))
-            this.observers.add(new CatView());
-        else if (type.equals("Dog"))
-            this.observers.add(new CatView());
+       
         this.changed = false; //TODO
     }
     
@@ -59,10 +56,7 @@ public class Animal implements Subject{
         this.type = type;
         this.message = calculateHappiness();
         this.observers = new ArrayList<>();
-        if (type.equals("Cat"))
-            this.observers.add(new CatView());
-        else if (type.equals("Dog"))
-            this.observers.add(new CatView());
+        
         this.changed = false; //TODO
     }
 
@@ -219,41 +213,46 @@ public class Animal implements Subject{
     public void performMovement() {
         //TODO
         this.changed = true;
+        notifyObserver();
     }
     
     public void eatFood(Food f) {
         this.setHunger((int) (this.getHunger()+f.getIndex()*100));
         if (this.getHunger()>100)
             this.setHunger(100);
+        this.message = "Eat Food";
         this.changed = true;
+        notifyObserver();
     }
     
     public void cleanBody(Soap s) {
         this.setHygiene((int) (this.getHygiene()+s.getIndex()*100));
         if (this.getHygiene()>100)
             this.setHygiene(100);
+        this.message = "Clean Body";
         this.changed = true;
+        notifyObserver();
     }
     
     public void playGame(Toy t) {
-        this.setHappiness((int) this.getHappiness()+t.getIndex()*100);
+        this.setHappiness((int) (this.getHappiness()+t.getIndex()*100));
         if (this.getHappiness()>100)
             this.setHappiness(100);
         this.changed = true;
-    }
-    
-    private void calculateCondition() {
-        
+        this.message = "Play Game";
+        notifyObserver();
     }
     
     public void sleep() {
         this.state = 1;
         this.changed = true;
+        notifyObserver();
     }
     
     public void wakeUp() {
         this.state = 0;
         this.changed = true;
+        notifyObserver();
     }
     
     public void reduceAllStatus() {
