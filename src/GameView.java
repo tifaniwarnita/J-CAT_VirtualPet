@@ -14,6 +14,7 @@ import javax.swing.JPanel;
  */
 public class GameView extends JPanel implements Observer, Runnable {
     private Subject player;
+    private AnimalView animalView;
     private String condition;
     private String defaultImage;
     private String winkImage;
@@ -32,9 +33,12 @@ public class GameView extends JPanel implements Observer, Runnable {
         /*Animal cat = new Animal("Tifani", "Bruno");
         DummyCatView dcv = new DummyCatView(iAnimalFullBody, cat);
         Thread th = new Thread(dcv);
-        th.start();*/
+        th.start();*/        
+    }
+    
+    public void setView(AnimalView animalView) {
+        this.animalView = animalView;
         initComponents();
-        
     }
 
     @Override
@@ -81,7 +85,7 @@ public class GameView extends JPanel implements Observer, Runnable {
 
         tAnimal.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 48)); // NOI18N
         tAnimal.setForeground(new java.awt.Color(58, 65, 141));
-        tAnimal.setText("Fluffy");
+        tAnimal.setText(this.animalView.getAnimal().getName());
 
         bMainMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\bMainMenu.png")); // NOI18N
         bMainMenu.setContentAreaFilled(false);
@@ -153,29 +157,29 @@ public class GameView extends JPanel implements Observer, Runnable {
 
         tHelloText.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 36)); // NOI18N
         tHelloText.setForeground(new java.awt.Color(186, 95, 125));
-        tHelloText.setText("Hello,");
+        tHelloText.setText("Hello, ");
 
         tHungerIndex.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tHungerIndex.setForeground(new java.awt.Color(58, 65, 141));
-        tHungerIndex.setText("Hunger:");
+        tHungerIndex.setText("Hunger: " + this.animalView.getAnimal().getHunger());
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\progressBar.png")); // NOI18N
 
         tHappinessIndex.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tHappinessIndex.setForeground(new java.awt.Color(58, 65, 141));
-        tHappinessIndex.setText("Happiness:");
+        tHappinessIndex.setText("Happiness: " + this.animalView.getAnimal().getHappiness());
 
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\progressBar.png")); // NOI18N
 
         tHygieneIndex.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tHygieneIndex.setForeground(new java.awt.Color(58, 65, 141));
-        tHygieneIndex.setText("Hgygiene:");
+        tHygieneIndex.setText("Hgygiene: " + this.animalView.getAnimal().getHygiene());
 
         jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\progressBar.png")); // NOI18N
 
         tHealthIndex.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tHealthIndex.setForeground(new java.awt.Color(58, 65, 141));
-        tHealthIndex.setText("Health:");
+        tHealthIndex.setText("Health: " + this.animalView.getAnimal().getHealth());
 
         jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\progressBar.png")); // NOI18N
 
@@ -315,14 +319,14 @@ public class GameView extends JPanel implements Observer, Runnable {
             while (this.action==false) {
                 try {
                     Thread.sleep(2000);
-                    this.iAnimalFullBody.setIcon(new ImageIcon(this.winkImage));
+                    this.iAnimalFullBody.setIcon(new ImageIcon(this.animalView.getWinkImage()));
                     if (this.action==true)
                         break;
                     repaint();
                     Thread.sleep(500);
                     if (this.action==true)
                         break;
-                    this.iAnimalFullBody.setIcon(new ImageIcon(this.defaultImage));
+                    this.iAnimalFullBody.setIcon(new ImageIcon(this.animalView.getDefaultImage()));
                     if (this.action==true)
                         break;
                     repaint();

@@ -16,7 +16,12 @@ public class TestingNewView {
         /* Set the Nimbus look and feel */
 
         /* Create and display the form */
+        Animal cat = new Animal("Quinsy", "Cat", 10, 10, 10, 10, 10);
+        AnimalView catObserver = new AnimalView();
+        cat.registerObserver(catObserver);
+        
         GameView game = new GameView();
+        game.setView(catObserver);
         JFrame frame = new JFrame();
         frame.add(game);
         frame.setSize(new Dimension(800,480));        
