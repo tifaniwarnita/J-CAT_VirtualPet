@@ -15,25 +15,11 @@ import javax.swing.JPanel;
 public class GameView extends JPanel implements Observer, Runnable {
     private Subject player;
     private AnimalView animalView;
-    private String condition;
-    private String defaultImage;
-    private String winkImage;
-    private String satisfiedImage1;
-    private String satisfiedImage2;
-    private String activeImage;
     private boolean action = false;
     
     public GameView() {
-        //wink mode
-        this.winkImage = ("../design/cat4.png");
-        //satisfied mode
-        this.satisfiedImage1 = ("../design/cat2.png");
-        this.satisfiedImage2 = ("../design/cat3.png");
-        this.defaultImage = ("../design/cat1.png");
-        /*Animal cat = new Animal("Tifani", "Bruno");
-        DummyCatView dcv = new DummyCatView(iAnimalFullBody, cat);
-        Thread th = new Thread(dcv);
-        th.start();*/        
+        this.player = null;
+        this.animalView = null;
     }
     
     public void setView(AnimalView animalView) {
@@ -153,7 +139,7 @@ public class GameView extends JPanel implements Observer, Runnable {
             }
         });
 
-        iAnimalFullBody.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\cat5.png")); // NOI18N
+        iAnimalFullBody.setIcon(new javax.swing.ImageIcon(this.animalView.getDefaultImage())); // NOI18N
 
         tHelloText.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 36)); // NOI18N
         tHelloText.setForeground(new java.awt.Color(186, 95, 125));
@@ -298,7 +284,8 @@ public class GameView extends JPanel implements Observer, Runnable {
 
     private void bFeedMouseClicked(java.awt.event.MouseEvent evt) {                                   
         // TODO add your handling code here:
-        this.action = true;
+        Food food = new Food();
+        this.animalView.getAnimal().eatFood(food);
     }                                  
 
     private void bPlayMouseClicked(java.awt.event.MouseEvent evt) {                                   
@@ -337,17 +324,21 @@ public class GameView extends JPanel implements Observer, Runnable {
             }
             //suatu aksi sedang dilakukan
             try {
+                tHungerIndex.setText("Hunger: " + this.animalView.getAnimal().getHunger());
+                tHappinessIndex.setText("Happiness: " + this.animalView.getAnimal().getHappiness());
+                tHygieneIndex.setText("Hgygiene: " + this.animalView.getAnimal().getHygiene());
+                tHealthIndex.setText("Health: " + this.animalView.getAnimal().getHealth());
                 Thread.sleep(300);
-                this.iAnimalFullBody.setIcon(new ImageIcon(this.satisfiedImage1));
+                this.iAnimalFullBody.setIcon(new ImageIcon(this.animalView.getSatisfiedImage1()));
                 repaint();
                 Thread.sleep(300);
-                this.iAnimalFullBody.setIcon(new ImageIcon(this.satisfiedImage2));
+                this.iAnimalFullBody.setIcon(new ImageIcon(this.animalView.getSatisfiedImage2()));
                 repaint();
                 Thread.sleep(800);
-                this.iAnimalFullBody.setIcon(new ImageIcon(this.satisfiedImage1));
+                this.iAnimalFullBody.setIcon(new ImageIcon(this.animalView.getSatisfiedImage1()));
                 repaint();
                 Thread.sleep(300);
-                this.iAnimalFullBody.setIcon(new ImageIcon(this.defaultImage));
+                this.iAnimalFullBody.setIcon(new ImageIcon(this.animalView.getDefaultImage()));
                 repaint();
                 this.action = false;
             }

@@ -19,7 +19,7 @@ public class TestingNewView {
         Animal cat = new Animal("Quinsy", "Cat", 10, 10, 10, 10, 10);
         AnimalView catObserver = new AnimalView();
         cat.registerObserver(catObserver);
-        
+        System.out.println(catObserver.getDefaultImage());
         GameView game = new GameView();
         game.setView(catObserver);
         JFrame frame = new JFrame();

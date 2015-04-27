@@ -188,9 +188,11 @@ public class Animal implements Subject{
     }
     
     public void eatFood(Food f) {
+        System.out.println("Eat food");
         this.setHunger((int) (this.getHunger()+f.getIndex()*100));
         if (this.getHunger()>100)
             this.setHunger(100);
+        System.out.println(this.getHunger());
         this.setChanged(true);
         notifyObservers("Eat food");
     }

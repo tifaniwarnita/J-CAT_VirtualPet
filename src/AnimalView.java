@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  *
  * @author Tifani
  */
-public class AnimalView implements Observer, Runnable {
+public class AnimalView implements Observer {
     private Animal animal;
     private String defaultImage;
     private String winkImage;
@@ -114,37 +114,21 @@ public class AnimalView implements Observer, Runnable {
     @Override
     public void setSubject(Subject sub) {
         setAnimal((Animal) sub);
-        if (animal.getType().equals("Cat")) {
-            //wink mode
-            this.winkImage = ("../design/cat4.png");
-            //satisfied mode
-            this.satisfiedImage1 = ("../design/cat2.png");
-            this.satisfiedImage2 = ("../design/cat3.png");
-            this.defaultImage = calculateHappiness();
-        }
-        else { //is a dog
-            this.winkImage = ("../design/dog4.png");
-            //satisfied mode
-            this.satisfiedImage1 = ("../design/dog2.png");
-            this.satisfiedImage2 = ("../design/dog3.png");
-            this.defaultImage = calculateHappiness();
-        }
+        //wink mode
+        this.winkImage = ("../design/Animal/"+this.animal.getType()+"/Close.png");
+        //satisfied mode
+        this.satisfiedImage1 = ("../design/Animal/"+this.animal.getType()+"/Satisfied.png");
+        this.satisfiedImage2 = ("../design/Animal/"+this.animal.getType()+"/Satisfied2.png");
+        this.defaultImage = calculateHappiness();
     }
     
     public String calculateHappiness() {
         int totalStatus = this.animal.getHappiness() + this.animal.getHealth() + this.animal.getHunger() + this.animal.getHygiene();
         if (totalStatus > 250) //Happy
-            return ("../design/cat1.png");
+            return ("../design/Animal/"+this.animal.getType()+"/Happy.png");
         else if (totalStatus > 140)
-            return ("../design/cat5.png");
+            return ("../design/Animal/"+this.animal.getType()+"/Normal.png");
         else
-            return ("../design/cat6.png");
-    }
-
-    @Override
-    public void run() {
-        while (this.animal!=null) {
-            calculateHappiness();
-        }
+            return ("../design/Animal/"+this.animal.getType()+"/Sad.png");
     }
 }
