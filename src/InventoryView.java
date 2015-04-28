@@ -15,6 +15,7 @@ public class InventoryView extends javax.swing.JPanel implements Observer {
      */
     public InventoryView() {
         initComponents();
+        update("OPENINV");
     }
 
     /**
@@ -52,32 +53,19 @@ public class InventoryView extends javax.swing.JPanel implements Observer {
 
         setBackground(new java.awt.Color(255, 251, 213));
         setPreferredSize(new java.awt.Dimension(800, 480));
-
         foodImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dogfoodinv.png"))); // NOI18N
-
         toyImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dogballinv.png"))); // NOI18N
-
         soapImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/soapinv.png"))); // NOI18N
 
         soapName.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 24)); // NOI18N
         soapName.setForeground(new java.awt.Color(184, 86, 120));
-        soapName.setText("Medium Soap");
-
-        inventoryTitle.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 48)); // NOI18N
-        inventoryTitle.setForeground(new java.awt.Color(215, 198, 181));
         inventoryTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventorytitle.png"))); // NOI18N
 
         toyName.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 24)); // NOI18N
         toyName.setForeground(new java.awt.Color(184, 86, 120));
-        toyName.setText("Medium Toy");
-
         foodName.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 24)); // NOI18N
         foodName.setForeground(new java.awt.Color(184, 86, 120));
-        foodName.setText("Medium Food");
-
         soapDesc.setFont(new java.awt.Font("Quicksand Bold", 0, 18)); // NOI18N
-        soapDesc.setText("Increases hygiene by 20 points");
-
         upgradeToyButton.setBackground(new java.awt.Color(46, 112, 185));
         upgradeToyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/upgradebutton.png"))); // NOI18N
         upgradeToyButton.setBorderPainted(false);
@@ -101,21 +89,13 @@ public class InventoryView extends javax.swing.JPanel implements Observer {
         });
 
         foodDesc.setFont(new java.awt.Font("Quicksand Bold", 0, 18)); // NOI18N
-        foodDesc.setText("Reduces hunger by 20 points");
-
         toyDesc.setFont(new java.awt.Font("Quicksand Bold", 0, 18)); // NOI18N
-        toyDesc.setText("Increases happiness by 20 points");
-
         upgradeToyPrice.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 18)); // NOI18N
         upgradeToyPrice.setForeground(new java.awt.Color(233, 181, 70));
         upgradeToyPrice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coinsmall.png"))); // NOI18N
-        upgradeToyPrice.setText("200");
-
         currentCoins.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 32)); // NOI18N
         currentCoins.setForeground(new java.awt.Color(233, 181, 70));
         currentCoins.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coinbig.png"))); // NOI18N
-        currentCoins.setText("125");
-
         upgradeSoapButton.setBackground(new java.awt.Color(46, 112, 185));
         upgradeSoapButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/upgradebutton.png"))); // NOI18N
         upgradeSoapButton.setBorderPainted(false);
@@ -130,13 +110,9 @@ public class InventoryView extends javax.swing.JPanel implements Observer {
         upgradeSoapPrice.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 18)); // NOI18N
         upgradeSoapPrice.setForeground(new java.awt.Color(233, 181, 70));
         upgradeSoapPrice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coinsmall.png"))); // NOI18N
-        upgradeSoapPrice.setText("200");
-
         buyFoodPrice.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 18)); // NOI18N
         buyFoodPrice.setForeground(new java.awt.Color(233, 181, 70));
         buyFoodPrice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coinsmall.png"))); // NOI18N
-        buyFoodPrice.setText("0");
-
         upgradeFoodButton.setBackground(new java.awt.Color(46, 112, 185));
         upgradeFoodButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/upgradebutton.png"))); // NOI18N
         upgradeFoodButton.setBorderPainted(false);
@@ -147,12 +123,9 @@ public class InventoryView extends javax.swing.JPanel implements Observer {
                 upgradeFoodButtonMouseClicked(evt);
             }
         });
-
         upgradeFoodPrice.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 18)); // NOI18N
         upgradeFoodPrice.setForeground(new java.awt.Color(233, 181, 70));
         upgradeFoodPrice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/coinsmall.png"))); // NOI18N
-        upgradeFoodPrice.setText("200");
-
         backButton.setBackground(new java.awt.Color(46, 112, 185));
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backbutton.png"))); // NOI18N
         backButton.setBorderPainted(false);
@@ -167,10 +140,8 @@ public class InventoryView extends javax.swing.JPanel implements Observer {
         buyFoodQty.setBackground(new java.awt.Color(255, 255, 255));
         buyFoodQty.setFont(new java.awt.Font("Quicksand Bold", 0, 15)); // NOI18N
         buyFoodQty.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        buyFoodQty.setText("0");
         buyFoodQty.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         buyFoodQty.setOpaque(true);
-
         upButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/upbutton.png"))); // NOI18N
         upButton.setBorderPainted(false);
         upButton.setContentAreaFilled(false);
