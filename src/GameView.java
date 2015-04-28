@@ -86,35 +86,38 @@ public class GameView extends JPanel implements Observer, Runnable {
         tAnimal.setForeground(new java.awt.Color(58, 65, 141));
         tAnimal.setText(this.animalView.getAnimal().getName());
 
-        bMainMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\bMainMenu.png")); // NOI18N
+        bMainMenu.setIcon(new javax.swing.ImageIcon("../design/bMainMenu.png")); // NOI18N
         bMainMenu.setContentAreaFilled(false);
         bMainMenu.setBorderPainted(false);
         bMainMenu.setPreferredSize(new java.awt.Dimension(159, 65));
+        bMainMenu.setFocusPainted(false);
         bMainMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bMainMenuMouseClicked(evt);
             }
         });
 
-        bInventory.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\bInventory.png")); // NOI18N
+        bInventory.setIcon(new javax.swing.ImageIcon("../design/bInventory.png")); // NOI18N
         bInventory.setContentAreaFilled(false);
         bInventory.setBorderPainted(false);
         bInventory.setPreferredSize(new java.awt.Dimension(159, 65));
+        bInventory.setFocusPainted(false);
         bInventory.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bInventoryMouseClicked(evt);
             }
         });
 
-        iCoins.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\Coins.png")); // NOI18N
+        iCoins.setIcon(new javax.swing.ImageIcon("../design/Coins.png")); // NOI18N
 
         tCoins.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 36)); // NOI18N
         tCoins.setForeground(new java.awt.Color(233, 181, 70));
         tCoins.setText(String.valueOf(this.player.getCoins()));
 
-        bPlay.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\bPlay.png")); // NOI18N
+        bPlay.setIcon(new javax.swing.ImageIcon("../design/bPlay.png")); // NOI18N
         bPlay.setContentAreaFilled(false);
         bPlay.setBorderPainted(false);
+        bPlay.setFocusPainted(false);
         bPlay.setPreferredSize(new java.awt.Dimension(133, 46));
         bPlay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -122,9 +125,10 @@ public class GameView extends JPanel implements Observer, Runnable {
             }
         });
 
-        bFeed.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\bFeed.png")); // NOI18N
+        bFeed.setIcon(new javax.swing.ImageIcon("../design/bFeed.png")); // NOI18N
         bFeed.setContentAreaFilled(false);
         bFeed.setBorderPainted(false);
+        bFeed.setFocusPainted(false);
         bFeed.setPreferredSize(new java.awt.Dimension(133, 46));
         bFeed.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -132,9 +136,10 @@ public class GameView extends JPanel implements Observer, Runnable {
             }
         });
 
-        bClean.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\bClean.png")); // NOI18N
+        bClean.setIcon(new javax.swing.ImageIcon("../design/bClean.png")); // NOI18N
         bClean.setContentAreaFilled(false);
         bClean.setBorderPainted(false);
+        bClean.setFocusPainted(false);
         bClean.setPreferredSize(new java.awt.Dimension(133, 46));
         bClean.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -142,9 +147,10 @@ public class GameView extends JPanel implements Observer, Runnable {
             }
         });
 
-        bSleep.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\bSleep.png")); // NOI18N
+        bSleep.setIcon(new javax.swing.ImageIcon("../design/bSleep.png")); // NOI18N
         bSleep.setContentAreaFilled(false);
         bSleep.setBorderPainted(false);
+        bSleep.setFocusPainted(false);
         bSleep.setPreferredSize(new java.awt.Dimension(133, 46));
         bSleep.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -162,25 +168,25 @@ public class GameView extends JPanel implements Observer, Runnable {
         tHungerIndex.setForeground(new java.awt.Color(58, 65, 141));
         tHungerIndex.setText("Hunger: " + this.animalView.getAnimal().getHunger());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\progressBar.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("../design/progressBar.png")); // NOI18N
 
         tHappinessIndex.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tHappinessIndex.setForeground(new java.awt.Color(58, 65, 141));
         tHappinessIndex.setText("Happiness: " + this.animalView.getAnimal().getHappiness());
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\progressBar.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon("../design/progressBar.png")); // NOI18N
 
         tHygieneIndex.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tHygieneIndex.setForeground(new java.awt.Color(58, 65, 141));
         tHygieneIndex.setText("Hgygiene: " + this.animalView.getAnimal().getHygiene());
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\progressBar.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("../design/progressBar.png")); // NOI18N
 
         tHealthIndex.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tHealthIndex.setForeground(new java.awt.Color(58, 65, 141));
         tHealthIndex.setText("Health: " + this.animalView.getAnimal().getHealth());
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\progressBar.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon("../design/progressBar.png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
