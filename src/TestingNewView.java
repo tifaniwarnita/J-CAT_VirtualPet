@@ -16,12 +16,19 @@ public class TestingNewView {
         /* Set the Nimbus look and feel */
 
         /* Create and display the form */
-        Animal cat = new Animal("Bruno", "Cat", 60, 60, 60, 60, 60);
+        Player player = new Player("Tifani");
+        player.getPet().loadAnimal("Bruno", "Cat", 60, 60, 60, 60, 60);
         AnimalView catObserver = new AnimalView();
-        cat.registerObserver(catObserver);
-        System.out.println(catObserver.getDefaultImage());
+        player.getPet().registerObserver(catObserver);
         GameView game = new GameView();
-        game.setView(catObserver);
+        player.registerObserver(game);
+        game.setAnimalView(catObserver);
+        game.initialize();
+        System.out.println(game.getPlayer().getPlayerName());
+        
+        //Animal cat = new Animal("Bruno", "Cat", 60, 60, 60, 60, 60);
+        //cat.registerObserver(catObserver);
+        System.out.println(catObserver.getDefaultImage());
         JFrame frame = new JFrame();
         frame.add(game);
         frame.setSize(new Dimension(800,480));        
@@ -31,5 +38,16 @@ public class TestingNewView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Thread th = new Thread(game);
         th.start();
+        /*GameView game = new GameView();
+        game.setView(catObserver);
+        JFrame frame = new JFrame();
+        frame.add(game);
+        frame.setSize(new Dimension(800,480));        
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Thread th = new Thread(game);
+        th.start();*/
     }
 }

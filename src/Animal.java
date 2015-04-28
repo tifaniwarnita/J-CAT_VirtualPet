@@ -1,6 +1,8 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,7 +14,7 @@ import java.util.List;
  *
  * @author Tifani
  */
-public class Animal implements Subject{
+public class Animal implements Subject, Runnable {
     private String name;
     private int hunger;
     private int happiness;
@@ -29,20 +31,21 @@ public class Animal implements Subject{
      * @param name adalah nama binatang yang akan dibuat
      * @param category adalah jenis binatang yang akan dibuat (misalnya kucing atau anjing)
      */
-    public Animal (String name, String type) {
-        this.name = name;
+    
+    public Animal() {
+        this.name = null;
         this.hunger = 100;
         this.happiness = 100;
         this.health = 100;
         this.hygiene = 100;
         this.state = 0;
         //Animal View
-        this.type = type;
+        this.type = null;
         this.observers = new ArrayList<>();
         this.changed = false; //TODO
     }
     
-    public Animal (String name, String type, int hunger, int happiness, int health, int hygiene, int state) {
+    public void loadAnimal (String name, String type, int hunger, int happiness, int health, int hygiene, int state) {
         this.name = name;
         this.hunger = hunger;
         this.happiness = happiness;
@@ -226,7 +229,14 @@ public class Animal implements Subject{
     }
     
     public void reduceAllStatus() {
-        //TODO
+        if (this.getHunger()>0)
+            this.setHunger(this.getHunger()-1);
+        if (this.getHappiness()>0)
+            this.setHappiness(this.getHappiness()-1);
+        if (this.getHygiene()>0)
+            this.setHygiene(this.getHygiene()-1);
+        if (this.getHealth()>0)
+            this.setHealth(this.getHealth()-1);
     }
 
     @Override
@@ -275,5 +285,19 @@ public class Animal implements Subject{
      */
     public void setMUTEX(Object MUTEX) {
         this.MUTEX = MUTEX;
+    }
+
+    @Override
+    public void run() {
+        while(true) {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Animal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            reduceAllStatus();
+            notifyObservers("Reduce status");
+            System.out.println("STATUS HUNGER: " + this.getHunger() );
+        }
     }
 }
