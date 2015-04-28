@@ -42,7 +42,7 @@ public class Food extends Product {
             setIndex(0.2);
             setLevel(2);
             setCurrentPrice(8);
-        } else if (level==3) {
+        } else if (lvl==3) {
             setName("Large Food");
             setDescription("Increases hunger by 30 points");
             setUpgradePrice(99999999);

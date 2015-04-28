@@ -93,6 +93,7 @@ public class Player implements Subject {
         if (coins>=getFood().getUpgradePrice()) {
             coins-=getFood().getUpgradePrice();
             getFood().upgrade();
+            changed=true;
             notifyObservers("UPGRADEFOOD");
         }
     }
@@ -101,6 +102,7 @@ public class Player implements Subject {
         if (coins>=getSoap().getUpgradePrice()) {
             coins-=getSoap().getUpgradePrice();
             getSoap().upgrade();
+            changed=true;
             notifyObservers("UPGRADESOAP");
         }
     }
@@ -109,6 +111,7 @@ public class Player implements Subject {
         if (coins>=getToy().getUpgradePrice()) {
             coins-=getToy().getUpgradePrice();
             getToy().upgrade();
+            changed=true;
             notifyObservers("UPGRADETOY");
         }
     }
@@ -117,6 +120,7 @@ public class Player implements Subject {
         if (coins>=getFood().getCurrentPrice()*qty) {
             getFood().updateQuantity(qty);
             coins -= getFood().getCurrentPrice()*qty;
+            changed=true;
             notifyObservers("BUYFOOD");
         }
     }
@@ -181,8 +185,8 @@ public class Player implements Subject {
     }
     
     @Override
-    public void notifyObservers(Object object) {
-        String message = (String)object;
+    public void notifyObservers(String message) {
+        System.out.println(message);
         ArrayList<Observer> observersLocal = null;
         //synchronization is used to make sure any observer registered after message is received is not notified
         synchronized (MUTEX) {
