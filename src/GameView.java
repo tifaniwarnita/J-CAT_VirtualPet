@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  * @author Tifani
  */
 public class GameView extends JPanel implements Observer, Runnable {
-    private Subject player;
+    private Player player;
     private AnimalView animalView;
     private boolean action = false;
     
@@ -22,19 +22,32 @@ public class GameView extends JPanel implements Observer, Runnable {
         this.animalView = null;
     }
     
-    public void setView(AnimalView animalView) {
+    public void setAnimalView(AnimalView animalView) {
         this.animalView = animalView;
-        initComponents();
     }
 
+    public void initialize() {
+        initComponents();
+    }
+    
+    public Player getPlayer() {
+        return this.player;
+    }
+    
     @Override
     public void update(Object args) {
-        
+        //masih belum yang upgrade2 atau tidur
+        tHungerIndex.setText("Hunger: " + this.animalView.getAnimal().getHunger());
+        tHappinessIndex.setText("Happiness: " + this.animalView.getAnimal().getHappiness());
+        tHygieneIndex.setText("Hgygiene: " + this.animalView.getAnimal().getHygiene());
+        tHealthIndex.setText("Health: " + this.animalView.getAnimal().getHealth());
+        tCoins.setText(String.valueOf(this.player.getCoins()));
+        this.action = true;
     }
 
     @Override
     public void setSubject(Subject sub) {
-        this.player = sub;
+        this.player = (Player) sub;
     }
     
     /**
@@ -97,7 +110,7 @@ public class GameView extends JPanel implements Observer, Runnable {
 
         tCoins.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 36)); // NOI18N
         tCoins.setForeground(new java.awt.Color(233, 181, 70));
-        tCoins.setText("125");
+        tCoins.setText(String.valueOf(this.player.getCoins()));
 
         bPlay.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\bPlay.png")); // NOI18N
         bPlay.setContentAreaFilled(false);
@@ -143,7 +156,7 @@ public class GameView extends JPanel implements Observer, Runnable {
 
         tHelloText.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 36)); // NOI18N
         tHelloText.setForeground(new java.awt.Color(186, 95, 125));
-        tHelloText.setText("Hello, ");
+        tHelloText.setText("Hello, " + this.player.getPlayerName());
 
         tHungerIndex.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tHungerIndex.setForeground(new java.awt.Color(58, 65, 141));
@@ -284,20 +297,22 @@ public class GameView extends JPanel implements Observer, Runnable {
 
     private void bFeedMouseClicked(java.awt.event.MouseEvent evt) {                                   
         // TODO add your handling code here:
-        Food food = new Food();
-        this.animalView.getAnimal().eatFood(food);
+        this.player.feedPet();
     }                                  
 
     private void bPlayMouseClicked(java.awt.event.MouseEvent evt) {                                   
         // TODO add your handling code here:
+        this.player.playPet();
     }                                  
 
     private void bCleanMouseClicked(java.awt.event.MouseEvent evt) {                                    
         // TODO add your handling code here:
+        this.player.cleanPet();
     }                                   
 
     private void bSleepMouseClicked(java.awt.event.MouseEvent evt) {                                    
         // TODO add your handling code here:
+        
     }              
     
     @Override
@@ -314,7 +329,6 @@ public class GameView extends JPanel implements Observer, Runnable {
                     if (this.action==true)
                         break;
                     this.iAnimalFullBody.setIcon(new ImageIcon(this.animalView.getDefaultImage()));
-                    System.out.println("GameView :" + this.animalView.getDefaultImage());
                     if (this.action==true)
                         break;
                     repaint();

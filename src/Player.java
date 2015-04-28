@@ -22,6 +22,9 @@ public class Player implements Subject {
     public Player() {
         this.coins = 0;
         this.playerName = "";
+        this.pet = new Animal();
+        Thread th = new Thread(pet);
+        th.start();
         productCollection.add(new Toy());
         productCollection.add(new Soap());
         productCollection.add(new Food());
@@ -29,6 +32,9 @@ public class Player implements Subject {
     public Player(String name) {
         this.coins = 0;
         this.playerName = name;
+        this.pet = new Animal();
+        Thread th = new Thread(pet);
+        th.start();
         productCollection.add(new Toy());
         productCollection.add(new Soap());
         productCollection.add(new Food());
@@ -57,14 +63,15 @@ public class Player implements Subject {
     }
     
     void adoptPet (String _name, String _type) {
-        setPet(new Animal(_name, _type));
+        this.pet.setName(_name);
+        this.pet.setType(_type);
     }
     
     void feedPet() {
         if (getFood().getQuantity()>=1) {
             getPet().eatFood(getFood());
             getFood().updateQuantity(-1);
-            setCoins(getCoins()+rand.nextInt((int)(getFood().getCurrentPrice()*1.5))+1);
+            //setCoins(getCoins()+rand.nextInt((int)(getFood().getCurrentPrice()*1.5))+1);
             changed = true;
             notifyObservers("FEEDPET");
         }
@@ -73,7 +80,7 @@ public class Player implements Subject {
     void cleanPet() {
         if (pet.getHygiene()<100) {
            getPet().cleanBody(getSoap());
-           setCoins(getCoins()+rand.nextInt((int)(getSoap().getIndex()+0.1)*50)+1);
+           //setCoins(getCoins()+rand.nextInt((int)(getSoap().getIndex()+0.1)*50)+1);
            changed = true;
            notifyObservers("CLEANPET");
         }
@@ -82,9 +89,10 @@ public class Player implements Subject {
     void playPet() {
         if (pet.getHappiness()<100) {
             getPet().playGame(getToy()); 
-            setCoins(getCoins()+rand.nextInt((int)(getToy().getIndex()+0.1)*50)+1);
+            //setCoins(getCoins()+rand.nextInt((int)(getToy().getIndex()+0.1)*50)+1);
             changed = true;
             notifyObservers("PLAYPET");
+            System.out.println("BERHASIL BERMAIN");
         }
     }
     
