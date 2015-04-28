@@ -15,9 +15,6 @@ public interface Subject {
     public void unregisterObserver(Observer obj);
     
     //methods to notify observers of change
-    public void notifyObserver();
-    
-    //methods to get update from subject
-    public Object getUpdate(Observer obj);
+    public void notifyObservers(String arg);
     
 }

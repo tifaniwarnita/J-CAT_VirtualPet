@@ -21,9 +21,8 @@ public class Animal implements Subject{
     private int state; //bangun = 0, tidur = 1
     private List<Observer> observers;
     private String type;
-    private final Object MUTEX = new Object();
+    private Object MUTEX = new Object();
     private boolean changed;
-    private String message;
     
     /**
      *
@@ -39,12 +38,7 @@ public class Animal implements Subject{
         this.state = 0;
         //Animal View
         this.type = type;
-        this.message = calculateHappiness();
         this.observers = new ArrayList<>();
-        if (type.equals("Cat"))
-            this.observers.add(new CatView());
-        else if (type.equals("Dog"))
-            this.observers.add(new CatView());
         this.changed = false; //TODO
     }
     
@@ -57,12 +51,7 @@ public class Animal implements Subject{
         this.state = state;
         //Animal View
         this.type = type;
-        this.message = calculateHappiness();
         this.observers = new ArrayList<>();
-        if (type.equals("Cat"))
-            this.observers.add(new CatView());
-        else if (type.equals("Dog"))
-            this.observers.add(new CatView());
         this.changed = false; //TODO
     }
 
@@ -191,69 +180,49 @@ public class Animal implements Subject{
     public void setChanged(boolean changed) {
         this.changed = changed;
     }
-
-    /**
-     * @return the message
-     */
-    public String getMessage() {
-        return message;
-    }
-
-    /**
-     * @param message the message to set
-     */
-    public void setMessage(String message) {
-        this.message = message;
-    }
-    
-    private String calculateHappiness() {
-        int totalStatus = this.getHappiness() + this.getHealth() + this.getHunger() + this.getHygiene();
-        if (totalStatus > 250)
-            return "Happy";
-        else if (totalStatus > 140)
-            return "Normal";
-        else
-            return "Sad";
-    }
     
     public void performMovement() {
         //TODO
-        this.changed = true;
+        this.setChanged(true);
+        notifyObservers("Perform movement");
     }
     
     public void eatFood(Food f) {
+        System.out.println("Eat food");
         this.setHunger((int) (this.getHunger()+f.getIndex()*100));
         if (this.getHunger()>100)
             this.setHunger(100);
-        this.changed = true;
+        System.out.println(this.getHunger());
+        this.setChanged(true);
+        notifyObservers("Eat food");
     }
     
     public void cleanBody(Soap s) {
         this.setHygiene((int) (this.getHygiene()+s.getIndex()*100));
         if (this.getHygiene()>100)
             this.setHygiene(100);
-        this.changed = true;
+        this.setChanged(true);
+        notifyObservers("Clean body");
     }
     
     public void playGame(Toy t) {
-        this.setHappiness((int) this.getHappiness()+t.getIndex()*100);
+        this.setHappiness((int) (this.getHappiness()+t.getIndex()*100));
         if (this.getHappiness()>100)
             this.setHappiness(100);
-        this.changed = true;
-    }
-    
-    private void calculateCondition() {
-        
+        this.setChanged(true);
+        notifyObservers("Play game");
     }
     
     public void sleep() {
-        this.state = 1;
-        this.changed = true;
+        this.setState(1);
+        this.setChanged(true);
+        notifyObservers("Sleep");
     }
     
     public void wakeUp() {
-        this.state = 0;
-        this.changed = true;
+        this.setState(0);
+        this.setChanged(true);
+        notifyObservers("Wake up");
     }
     
     public void reduceAllStatus() {
@@ -264,38 +233,47 @@ public class Animal implements Subject{
     public void registerObserver(Observer obj) {
         if (obj==null)
             throw new NullPointerException("Null Observer");
-        synchronized (MUTEX) {
-            if(!observers.contains(obj))
-                observers.add(obj);
+        synchronized (getMUTEX()) {
+            if(!observers.contains(obj)) {
+                getObservers().add(obj);
+                obj.setSubject(this);
+            }
         }
     }
 
     @Override
     public void unregisterObserver(Observer obj) {
-        synchronized (MUTEX) {
-            observers.remove(obj);
+        synchronized (getMUTEX()) {
+            getObservers().remove(obj);
         }
     }
 
     @Override
-    public void notifyObserver() {
+    public void notifyObservers(String arg) {
         List<Observer> observersLocal = null;
         //sinkronisasi digunakan untuk memastikan bahwa setiap observer yang terregister setelah pesan diterima tidak ternotify
-        synchronized (MUTEX) {
-            if(!changed)
+        synchronized (getMUTEX()) {
+            if(!isChanged())
                 return;
-            observersLocal = new ArrayList<>(this.observers);
-            this.changed = false;
+            observersLocal = new ArrayList<>(this.getObservers());
+            this.setChanged(false);
         }
         for (Observer obj : observersLocal) {
-            obj.update(this.message);
+            obj.update(arg);
         }
+    }    
+
+    /**
+     * @return the MUTEX
+     */
+    public Object getMUTEX() {
+        return MUTEX;
     }
 
-    @Override
-    public Object getUpdate(Observer obj) {
-        return this.message;
+    /**
+     * @param MUTEX the MUTEX to set
+     */
+    public void setMUTEX(Object MUTEX) {
+        this.MUTEX = MUTEX;
     }
-    
-    
 }

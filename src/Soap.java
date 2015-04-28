@@ -23,13 +23,13 @@ public class Soap extends Product {
      */
     @Override
     public void changeLevel(int lvl) {
-        /*if (lvl==1) {
+        if (lvl==1) {
             setName("Small Soap");
             setDescription("Increases hygiene by 10 points");
             setUpgradePrice(100);
             setIndex(0.1);
             setLevel(1);
-        }*/
+        }
         if (lvl==2) {
             setName("Medium Soap");
             setDescription("Increases hygiene by 20 points");
