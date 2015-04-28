@@ -314,6 +314,7 @@ public class GameView extends JPanel implements Observer, Runnable {
                     if (this.action==true)
                         break;
                     this.iAnimalFullBody.setIcon(new ImageIcon(this.animalView.getDefaultImage()));
+                    System.out.println("GameView :" + this.animalView.getDefaultImage());
                     if (this.action==true)
                         break;
                     repaint();

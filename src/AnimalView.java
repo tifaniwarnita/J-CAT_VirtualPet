@@ -108,7 +108,8 @@ public class AnimalView implements Observer {
 
     @Override
     public void update(Object args) {
-        calculateHappiness();
+        this.defaultImage = calculateHappiness();
+        System.out.println(this.defaultImage);
     }
 
     @Override

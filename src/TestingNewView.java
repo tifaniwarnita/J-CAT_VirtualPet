@@ -16,7 +16,7 @@ public class TestingNewView {
         /* Set the Nimbus look and feel */
 
         /* Create and display the form */
-        Animal cat = new Animal("Quinsy", "Cat", 10, 10, 10, 10, 10);
+        Animal cat = new Animal("Bruno", "Cat", 60, 60, 60, 60, 60);
         AnimalView catObserver = new AnimalView();
         cat.registerObserver(catObserver);
         System.out.println(catObserver.getDefaultImage());
