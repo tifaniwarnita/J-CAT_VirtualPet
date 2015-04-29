@@ -1,5 +1,6 @@
 
 import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /*
@@ -11,13 +12,16 @@ import javax.swing.JPanel;
  *
  * @author Tifani
  */
-public class AnimalView implements Observer {
+public class AnimalView extends JPanel implements Observer, Runnable {
     private Animal animal;
     private String defaultImage;
     private String winkImage;
     private String satisfiedImage1;
     private String satisfiedImage2;
     private String activeImage;
+    private boolean action;
+    private String message;
+    private javax.swing.JLabel iAnimalFullBody;
   
     public AnimalView() {
         this.animal = null;
@@ -27,6 +31,36 @@ public class AnimalView implements Observer {
         this.satisfiedImage2 = null;
         this.activeImage = null;
     }
+    
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    private void initComponents() {
+
+        iAnimalFullBody = new javax.swing.JLabel();
+
+        iAnimalFullBody.setMaximumSize(new java.awt.Dimension(310, 350));
+        iAnimalFullBody.setMinimumSize(new java.awt.Dimension(310, 350));
+        iAnimalFullBody.setPreferredSize(new java.awt.Dimension(310, 350));
+        
+        this.setOpaque(false);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(426, Short.MAX_VALUE)
+                .addComponent(iAnimalFullBody, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 109, Short.MAX_VALUE)
+                .addComponent(iAnimalFullBody, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+    }// </editor-fold>       
     
     public Animal getAnimal() {
         return animal;
@@ -107,9 +141,11 @@ public class AnimalView implements Observer {
     }
 
     @Override
-    public void update(Object args) {
+    public void update(String args) {
+        System.out.println("HAI INI BERHASIL UPDATE ANIMAL");
         this.defaultImage = calculateHappiness();
-        System.out.println(this.defaultImage);
+        this.action = true;
+        this.message = args;
     }
 
     @Override
@@ -121,6 +157,9 @@ public class AnimalView implements Observer {
         this.satisfiedImage1 = ("../design/Animal/"+this.animal.getType()+"/Satisfied.png");
         this.satisfiedImage2 = ("../design/Animal/"+this.animal.getType()+"/Satisfied2.png");
         this.defaultImage = calculateHappiness();
+        initComponents();
+        Thread t = new Thread(this);
+        t.start();
     }
     
     public String calculateHappiness() {
@@ -132,4 +171,59 @@ public class AnimalView implements Observer {
         else
             return ("../design/Animal/"+this.animal.getType()+"/Sad.png");
     }
+
+    @Override
+    public void run() {
+        while (true) {
+            while (this.action==false) {
+                try {
+                    Thread.sleep(2000);
+                    this.iAnimalFullBody.setIcon(new ImageIcon(getWinkImage()));
+                    if (this.action==true)
+                        break;
+                    repaint();
+                    Thread.sleep(500);
+                    if (this.action==true)
+                        break;
+                    this.iAnimalFullBody.setIcon(new ImageIcon(getDefaultImage()));
+                    if (this.action==true)
+                        break;
+                    repaint();
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            //suatu aksi sedang dilakukan
+            try {
+                String obj = null;
+                if (this.message.equals("Eat food"))
+                    obj = "Food";
+                else if (this.message.equals("Clean body"))
+                    obj = "Soap";
+                else if (this.message.equals("Play game"))
+                    obj = "Toy";
+                if (obj!=null) {
+                    this.iAnimalFullBody.setIcon(new ImageIcon(("../design/Animal/"+this.animal.getType()+"/"+obj+"Happy.png")));
+                    repaint();
+                    Thread.sleep(300);
+                    this.iAnimalFullBody.setIcon(new ImageIcon(("../design/Animal/"+this.animal.getType()+"/"+obj+"Satisfied.png")));
+                    repaint();
+                    Thread.sleep(800);
+                    this.iAnimalFullBody.setIcon(new ImageIcon(("../design/Animal/"+this.animal.getType()+"/"+obj+"Satisfied2.png")));
+                    repaint();
+                    Thread.sleep(300);
+                    this.iAnimalFullBody.setIcon(new ImageIcon(getDefaultImage()));
+                    repaint();
+                }
+                obj = null;
+                this.action = false;
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    
 }
