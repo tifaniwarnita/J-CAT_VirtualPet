@@ -142,7 +142,6 @@ public class AnimalView extends JPanel implements Observer, Runnable {
 
     @Override
     public void update(String args) {
-        System.out.println("HAI INI BERHASIL UPDATE ANIMAL");
         this.defaultImage = calculateHappiness();
         this.action = true;
         this.message = args;
@@ -177,18 +176,16 @@ public class AnimalView extends JPanel implements Observer, Runnable {
         while (true) {
             while (this.action==false) {
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(1000);
                     this.iAnimalFullBody.setIcon(new ImageIcon(getWinkImage()));
                     if (this.action==true)
                         break;
-                    repaint();
-                    Thread.sleep(500);
+                    Thread.sleep(300);
                     if (this.action==true)
                         break;
                     this.iAnimalFullBody.setIcon(new ImageIcon(getDefaultImage()));
                     if (this.action==true)
                         break;
-                    repaint();
                 }
                 catch (Exception e) {
                     e.printStackTrace();
@@ -208,13 +205,10 @@ public class AnimalView extends JPanel implements Observer, Runnable {
                     repaint();
                     Thread.sleep(300);
                     this.iAnimalFullBody.setIcon(new ImageIcon(("../design/Animal/"+this.animal.getType()+"/"+obj+"Satisfied.png")));
-                    repaint();
-                    Thread.sleep(800);
-                    this.iAnimalFullBody.setIcon(new ImageIcon(("../design/Animal/"+this.animal.getType()+"/"+obj+"Satisfied2.png")));
-                    repaint();
                     Thread.sleep(300);
+                    this.iAnimalFullBody.setIcon(new ImageIcon(("../design/Animal/"+this.animal.getType()+"/"+obj+"Satisfied2.png")));
+                    Thread.sleep(400);
                     this.iAnimalFullBody.setIcon(new ImageIcon(getDefaultImage()));
-                    repaint();
                 }
                 obj = null;
                 this.action = false;

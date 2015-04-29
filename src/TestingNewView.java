@@ -29,7 +29,7 @@ public class TestingNewView {
         lpane.setBounds(0, 0, 800, 480);
         
         Player player = new Player("Tifani");
-        player.getPet().loadAnimal("Bruno", "Dog", 60, 60, 60, 60, 60);
+        player.getPet().loadAnimal("Bruno", "Dog", 60, 60, 60, 60, 0);
         
         AnimalView catObserver = new AnimalView();
         player.getPet().registerObserver(catObserver);
@@ -40,9 +40,7 @@ public class TestingNewView {
         GameView game = new GameView();
         player.registerObserver(game);
         game.setAnimalView(catObserver);
-        System.out.println(game.getPlayer().getPlayerName());
         
-        System.out.println(catObserver.getDefaultImage());
         
         game.setBounds(0, 0, 800, 480);
         game.setOpaque(true);

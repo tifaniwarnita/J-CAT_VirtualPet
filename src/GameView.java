@@ -10,7 +10,7 @@ import javax.swing.JPanel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/**
+/** 
  *
  * @author Tifani
  */
@@ -26,6 +26,7 @@ public class GameView extends JPanel implements Observer, Runnable {
     
     public void setAnimalView(AnimalView animalView) {
         this.animalView = animalView;
+        tAnimal.setText(this.animalView.getAnimal().getName());
     }
     
     public JButton getMainMenuButton() {
@@ -45,8 +46,8 @@ public class GameView extends JPanel implements Observer, Runnable {
         //masih belum yang upgrade2 atau tidur
         tCoins.setText(String.valueOf(this.player.getCoins()));
         this.action = true;
-        if (args.equals("Not enough coins")) {
-            JOptionPane.showMessageDialog(this, "Not enough coins", "Cannot feed pet", JOptionPane.WARNING_MESSAGE);
+        if (args.equals("Not enough food")) {
+            JOptionPane.showMessageDialog(this, "Not enough food", "Cannot feed pet", JOptionPane.WARNING_MESSAGE);
         }
     }
 
@@ -143,11 +144,11 @@ public class GameView extends JPanel implements Observer, Runnable {
 
         tHelloText.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 36)); // NOI18N
         tHelloText.setForeground(new java.awt.Color(186, 95, 125));
-        tHelloText.setText("Hello,");
+        tHelloText.setText("Hello, " + this.player.getPlayerName());
 
         tAnimal.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 48)); // NOI18N
         tAnimal.setForeground(new java.awt.Color(58, 65, 141));
-        tAnimal.setText("Fluffy");
+        tAnimal.setText("");
 
         bMainMenu.setIcon(new javax.swing.ImageIcon("../design/bMainMenu.png")); // NOI18N
         bMainMenu.setContentAreaFilled(false);
@@ -169,7 +170,7 @@ public class GameView extends JPanel implements Observer, Runnable {
 
         tCoins.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 36)); // NOI18N
         tCoins.setForeground(new java.awt.Color(233, 181, 70));
-        tCoins.setText("125");
+        tCoins.setText(String.valueOf(this.player.getCoins()));
 
         bPlay.setIcon(new javax.swing.ImageIcon("../design/bPlay.png")); // NOI18N
         bPlay.setContentAreaFilled(false);
@@ -184,40 +185,7 @@ public class GameView extends JPanel implements Observer, Runnable {
 
         jLabel5.setIcon(new javax.swing.ImageIcon("../design/Status/Blank.png")); // NOI18N
 
-        bFeed.setIcon(new javax.swing.ImageIcon("../design/bFeed.png")); // NOI18N
-        bFeed.setContentAreaFilled(false);
-        bFeed.setBorderPainted(false);
-        bFeed.setFocusPainted(false);
-        bFeed.setPreferredSize(new java.awt.Dimension(133, 46));
-        bFeed.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bFeedMouseClicked(evt);
-            }
-        });
-
-        bClean.setIcon(new javax.swing.ImageIcon("../design/bClean.png")); // NOI18N
-        bClean.setContentAreaFilled(false);
-        bClean.setPreferredSize(new java.awt.Dimension(133, 46));
-        bClean.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bCleanMouseClicked(evt);
-            }
-        });
-
         jLabel6.setIcon(new javax.swing.ImageIcon("../design/Status/Blank.png")); // NOI18N
-
-        bSleep.setIcon(new javax.swing.ImageIcon("../design/bSleep.png")); // NOI18N
-        bSleep.setContentAreaFilled(false);
-        bSleep.setPreferredSize(new java.awt.Dimension(133, 46));
-        bSleep.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bSleepMouseClicked(evt);
-            }
-        });
-
-        tHelloText.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 36)); // NOI18N
-        tHelloText.setForeground(new java.awt.Color(186, 95, 125));
-        tHelloText.setText("Hello,");
 
         tAnimal.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 48)); // NOI18N
         tAnimal.setForeground(new java.awt.Color(58, 65, 141));
@@ -228,10 +196,6 @@ public class GameView extends JPanel implements Observer, Runnable {
         iCoins.setIcon(new javax.swing.ImageIcon("../design/Coins.png")); // NOI18N
 
         jLabel8.setIcon(new javax.swing.ImageIcon("../design/Status/Blank.png")); // NOI18N
-
-        tCoins.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 36)); // NOI18N
-        tCoins.setForeground(new java.awt.Color(233, 181, 70));
-        tCoins.setText("125");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

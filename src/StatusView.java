@@ -121,7 +121,6 @@ public class StatusView extends JPanel implements Observer {
 
     @Override
     public void update(String args) {
-        System.out.println("STATUS BISA " + args);
         if (args.equals("Eat food"))
             calculateHungerStatus();
         else if (args.equals("Clean body"))
@@ -129,7 +128,6 @@ public class StatusView extends JPanel implements Observer {
         else if (args.equals("Play game"))
             calculateHappinessStatus();
         else if (args.equals("Reduce status")) {
-            System.out.println("Red");
             calculateHungerStatus();
             calculateHygieneStatus();
             calculateHappinessStatus();
@@ -141,7 +139,6 @@ public class StatusView extends JPanel implements Observer {
     public void setSubject(Subject sub) {
         setAnimal((Animal) sub);
         initComponents();
-        System.out.println("Hunger: " + animal.getHunger());
         calculateHungerStatus();
         calculateHygieneStatus();
         calculateHappinessStatus();
@@ -150,55 +147,65 @@ public class StatusView extends JPanel implements Observer {
     
     public void calculateHungerStatus() {
         this.tHungerIndex.setText("Hunger: " + this.animal.getHunger());
-        if (animal.getHunger()>=70)
-            this.progressBarHunger.setIcon(new javax.swing.ImageIcon("../design/Status/Blank.png")); // NOI18N
-        else if (animal.getHunger()>=40) {
-            this.progressBarHunger.setIcon(new javax.swing.ImageIcon("../design/Status/Orange.png")); // NOI18N
-        }
-        else if (animal.getHunger()>0)
-            this.progressBarHunger.setIcon(new javax.swing.ImageIcon("../design/Status/Red.png"));
+        if (animal.getHunger()==100)
+            this.progressBarHunger.setIcon(new javax.swing.ImageIcon("../design/Status/Bar100.png"));
+        else if (animal.getHunger()>=85)
+            this.progressBarHunger.setIcon(new javax.swing.ImageIcon("../design/Status/Bar80.png"));
+        else if (animal.getHunger()>=70)
+            this.progressBarHunger.setIcon(new javax.swing.ImageIcon("../design/Status/Bar60.png"));
+        else if (animal.getHunger()>=35)
+            this.progressBarHunger.setIcon(new javax.swing.ImageIcon("../design/Status/Bar40.png"));
+        else if (animal.getHunger()>=0)
+            this.progressBarHunger.setIcon(new javax.swing.ImageIcon("../design/Status/Bar20.png"));
         else
             this.progressBarHunger.setIcon(new javax.swing.ImageIcon("../design/Status/Blank.png"));
-        this.progressBarHunger.setBounds(0, 0, 120, 21);
     }
     
     public void calculateHappinessStatus() {
         this.tHappinessIndex.setText("Happiness: " + this.animal.getHappiness());
-        if (animal.getHappiness()>=70)
-            this.progressBarHappiness.setIcon(new javax.swing.ImageIcon("../design/Status/Green.png"));
-        else if (animal.getHappiness()>=40)
-            this.progressBarHappiness.setIcon(new javax.swing.ImageIcon("../design/Status/Orange.png"));
-        else if (animal.getHappiness()>0)
-            this.progressBarHappiness.setIcon(new javax.swing.ImageIcon("../design/Status/Red.png"));
+        if (animal.getHappiness()==100)
+            this.progressBarHappiness.setIcon(new javax.swing.ImageIcon("../design/Status/Bar100.png"));
+        else if (animal.getHappiness()>=85)
+            this.progressBarHappiness.setIcon(new javax.swing.ImageIcon("../design/Status/Bar80.png"));
+        else if (animal.getHappiness()>=70)
+            this.progressBarHappiness.setIcon(new javax.swing.ImageIcon("../design/Status/Bar60.png"));
+        else if (animal.getHappiness()>=35)
+            this.progressBarHappiness.setIcon(new javax.swing.ImageIcon("../design/Status/Bar40.png"));
+        else if (animal.getHappiness()>=0)
+            this.progressBarHappiness.setIcon(new javax.swing.ImageIcon("../design/Status/Bar20.png"));
         else
             this.progressBarHappiness.setIcon(new javax.swing.ImageIcon("../design/Status/Blank.png"));
-        this.progressBarHappiness.setMaximumSize(new Dimension((152*this.animal.getHappiness()/100),29));
-        //this.progressBarHappiness.setPreferredSize(new Dimension((152*this.animal.getHappiness()/100),29));
     }
     
     public void calculateHygieneStatus() {
         this.tHygieneIndex.setText("Hygiene: " + this.animal.getHygiene());
-        if (animal.getHygiene()>=70)
-            this.progressBarHygiene.setIcon(new javax.swing.ImageIcon("../design/Status/Green.png"));
-        else if (animal.getHygiene()>=40)
-            this.progressBarHygiene.setIcon(new javax.swing.ImageIcon("../design/Status/Orange.png"));
-        else if (animal.getHygiene()>0)
-            this.progressBarHygiene.setIcon(new javax.swing.ImageIcon("../design/Status/Red.png"));
+        if (animal.getHygiene()==100)
+            this.progressBarHygiene.setIcon(new javax.swing.ImageIcon("../design/Status/Bar100.png"));
+        else if (animal.getHygiene()>=85)
+            this.progressBarHygiene.setIcon(new javax.swing.ImageIcon("../design/Status/Bar80.png"));
+        else if (animal.getHygiene()>=70)
+            this.progressBarHygiene.setIcon(new javax.swing.ImageIcon("../design/Status/Bar60.png"));
+        else if (animal.getHygiene()>=35)
+            this.progressBarHygiene.setIcon(new javax.swing.ImageIcon("../design/Status/Bar40.png"));
+        else if (animal.getHygiene()>=0)
+            this.progressBarHygiene.setIcon(new javax.swing.ImageIcon("../design/Status/Bar20.png"));
         else
             this.progressBarHygiene.setIcon(new javax.swing.ImageIcon("../design/Status/Blank.png"));
-        //this.progressBarHygiene.setPreferredSize(new Dimension((152*this.animal.getHygiene()/100),29));
     }
     
     public void calculateHealthStatus() {
-        this.tHealthIndex.setText("Health: " + this.animal.getHealth());
-        if (animal.getHealth()>=70)
-            this.progressBarHealth.setIcon(new javax.swing.ImageIcon("../design/Status/Green.png"));
-        else if (animal.getHealth()>=40)
-            this.progressBarHealth.setIcon(new javax.swing.ImageIcon("../design/Status/Orange.png"));
-        else if (animal.getHealth()>0)
-            this.progressBarHealth.setIcon(new javax.swing.ImageIcon("../design/Status/Red.png"));
+      this.tHealthIndex.setText("Health: " + this.animal.getHealth());
+        if (animal.getHealth()==100)
+            this.progressBarHealth.setIcon(new javax.swing.ImageIcon("../design/Status/Bar100.png"));
+        else if (animal.getHealth()>=85)
+            this.progressBarHealth.setIcon(new javax.swing.ImageIcon("../design/Status/Bar80.png"));
+        else if (animal.getHealth()>=70)
+            this.progressBarHealth.setIcon(new javax.swing.ImageIcon("../design/Status/Bar60.png"));
+        else if (animal.getHealth()>=35)
+            this.progressBarHealth.setIcon(new javax.swing.ImageIcon("../design/Status/Bar40.png"));
+        else if (animal.getHealth()>=0)
+            this.progressBarHealth.setIcon(new javax.swing.ImageIcon("../design/Status/Bar20.png"));
         else
             this.progressBarHealth.setIcon(new javax.swing.ImageIcon("../design/Status/Blank.png"));
-        //this.progressBarHealth.setPreferredSize(new Dimension((152*this.animal.getHealth()/100),29));
     }
 }

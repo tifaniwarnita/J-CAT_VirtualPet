@@ -42,20 +42,11 @@ public class Animal implements Subject, Runnable {
         //Animal View
         this.type = null;
         this.observers = new ArrayList<>();
-        this.changed = false; //TODO
     }
     
-    public Animal (String name, String type, int hunger, int happiness, int health, int hygiene, int state) {
+    public void setAnimal (String name, String type) {
         this.name = name;
-        this.hunger = hunger;
-        this.happiness = happiness;
-        this.health = health;
-        this.hygiene = hygiene;
-        this.state = state;
-        //Animal View
         this.type = type;
-        this.observers = new ArrayList<>();
-        this.changed = false; //TODO
         Thread t = new Thread(this);
         t.start();
     }
@@ -201,11 +192,9 @@ public class Animal implements Subject, Runnable {
     }
     
     public void eatFood(Food f) {
-        System.out.println("Eat food");
         this.setHunger((int) (this.getHunger()+f.getIndex()*100));
         if (this.getHunger()>100)
             this.setHunger(100);
-        System.out.println(this.getHunger());
         this.setChanged(true);
         notifyObservers("Eat food");
     }
@@ -249,7 +238,6 @@ public class Animal implements Subject, Runnable {
             this.setHealth(this.getHealth()-1);
         this.changed = true;
         notifyObservers("Reduce status");
-        System.out.println("User");
     }
 
     @Override
@@ -260,7 +248,6 @@ public class Animal implements Subject, Runnable {
             if(!observers.contains(obj)) {
                 getObservers().add(obj);
                 obj.setSubject(this);
-                System.out.println("SET SUBJ THIS");
             }
         }
     }
@@ -310,7 +297,6 @@ public class Animal implements Subject, Runnable {
                 Logger.getLogger(Animal.class.getName()).log(Level.SEVERE, null, ex);
             }
             reduceAllStatus();
-            System.out.println("STATUS HUNGER: " + this.getHunger() );
         }
     }
 }
