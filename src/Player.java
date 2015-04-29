@@ -22,9 +22,6 @@ public class Player implements Subject {
     public Player() {
         this.coins = 0;
         this.playerName = "";
-        this.pet = new Animal();
-        Thread th = new Thread(pet);
-        th.start();
         productCollection.add(new Toy());
         productCollection.add(new Soap());
         productCollection.add(new Food());
@@ -32,9 +29,6 @@ public class Player implements Subject {
     public Player(String name) {
         this.coins = 0;
         this.playerName = name;
-        this.pet = new Animal();
-        Thread th = new Thread(pet);
-        th.start();
         productCollection.add(new Toy());
         productCollection.add(new Soap());
         productCollection.add(new Food());
@@ -63,15 +57,14 @@ public class Player implements Subject {
     }
     
     void adoptPet (String _name, String _type) {
-        this.pet.setName(_name);
-        this.pet.setType(_type);
+        setPet(new Animal(_name, _type));
     }
     
     void feedPet() {
         if (getFood().getQuantity()>=1) {
             getPet().eatFood(getFood());
             getFood().updateQuantity(-1);
-            //setCoins(getCoins()+rand.nextInt((int)(getFood().getCurrentPrice()*1.5))+1);
+            setCoins(getCoins()+rand.nextInt(getFood().getLevel()*5)+1);
             changed = true;
             notifyObservers("FEEDPET");
         }
@@ -80,7 +73,7 @@ public class Player implements Subject {
     void cleanPet() {
         if (pet.getHygiene()<100) {
            getPet().cleanBody(getSoap());
-           //setCoins(getCoins()+rand.nextInt((int)(getSoap().getIndex()+0.1)*50)+1);
+           setCoins(getCoins()+rand.nextInt(getSoap().getLevel()*5)+1);
            changed = true;
            notifyObservers("CLEANPET");
         }
@@ -89,10 +82,9 @@ public class Player implements Subject {
     void playPet() {
         if (pet.getHappiness()<100) {
             getPet().playGame(getToy()); 
-            //setCoins(getCoins()+rand.nextInt((int)(getToy().getIndex()+0.1)*50)+1);
+            setCoins(getCoins()+rand.nextInt(getToy().getLevel()*5)+1);
             changed = true;
             notifyObservers("PLAYPET");
-            System.out.println("BERHASIL BERMAIN");
         }
     }
     
@@ -178,7 +170,7 @@ public class Player implements Subject {
         if(ob == null) throw new NullPointerException("Null Observer");
         synchronized (MUTEX) {
         if(!observers.contains(ob)) {
-            observers.add(ob);
+                getObservers().add(ob);
             ob.setSubject(this);
         }
         }
@@ -187,25 +179,38 @@ public class Player implements Subject {
     @Override
     public void unregisterObserver(Observer ob) {
         synchronized (MUTEX) {
-            observers.remove(ob);
+            getObservers().remove(ob);
             ob.setSubject(null);
         }
     }
     
     @Override
     public void notifyObservers(String message) {
-        System.out.println(message);
         ArrayList<Observer> observersLocal = null;
         //synchronization is used to make sure any observer registered after message is received is not notified
         synchronized (MUTEX) {
             if (!changed)
                 return;
-            observersLocal = new ArrayList<>(this.observers);
+            observersLocal = new ArrayList<>(this.getObservers());
             this.changed=false;
         }
         for (Observer ob : observersLocal) {
             ob.update(message);
         }
+    }
+
+    /**
+     * @return the observers
+     */
+    public ArrayList<Observer> getObservers() {
+        return observers;
+    }
+
+    /**
+     * @param observers the observers to set
+     */
+    public void setObservers(ArrayList<Observer> observers) {
+        this.observers = observers;
     }
     
     
