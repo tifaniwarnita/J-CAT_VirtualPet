@@ -19,6 +19,8 @@ public class AnimalView extends JPanel implements Observer, Runnable {
     private String satisfiedImage1;
     private String satisfiedImage2;
     private String activeImage;
+    private String sleepImage1;
+    private String sleepImage2;
     private boolean action;
     private String message;
     private javax.swing.JLabel iAnimalFullBody;
@@ -30,6 +32,8 @@ public class AnimalView extends JPanel implements Observer, Runnable {
         this.satisfiedImage1 = null;
         this.satisfiedImage2 = null;
         this.activeImage = null;
+        this.sleepImage1 = null;
+        this.sleepImage2 = null;
     }
     
     @SuppressWarnings("unchecked")
@@ -139,6 +143,34 @@ public class AnimalView extends JPanel implements Observer, Runnable {
     public void setActiveImage(String activeImage) {
         this.activeImage = activeImage;
     }
+    
+    /**
+     * @return the sleepImage1
+     */
+    public String getSleepImage1() {
+        return sleepImage1;
+    }
+
+    /**
+     * @param sleepImage1 the sleepImage1 to set
+     */
+    public void setSleepImage1(String sleepImage1) {
+        this.sleepImage1 = sleepImage1;
+    }
+    
+    /**
+     * @return the sleepImage2
+     */
+    public String getSleepImage2() {
+        return sleepImage2;
+    }
+
+    /**
+     * @param sleepImage2 the sleepImage2 to set
+     */
+    public void setSleepImage2(String sleepImage2) {
+        this.sleepImage2 = sleepImage2;
+    }
 
     @Override
     public void update(String args) {
@@ -152,6 +184,8 @@ public class AnimalView extends JPanel implements Observer, Runnable {
         setAnimal((Animal) sub);
         //wink mode
         this.winkImage = ("../design/Animal/"+this.animal.getType()+"/Close.png");
+        this.sleepImage1 = ("../design/Animal/"+this.animal.getType()+"/Sleep1.png");
+        this.sleepImage2 = ("../design/Animal/"+this.animal.getType()+"/Sleep2.png");
         //satisfied mode
         this.satisfiedImage1 = ("../design/Animal/"+this.animal.getType()+"/Satisfied.png");
         this.satisfiedImage2 = ("../design/Animal/"+this.animal.getType()+"/Satisfied2.png");
@@ -174,7 +208,7 @@ public class AnimalView extends JPanel implements Observer, Runnable {
     @Override
     public void run() {
         while (true) {
-            while (this.action==false) {
+            while (this.action==false && this.animal.getState()==0) {
                 try {
                     Thread.sleep(1000);
                     this.iAnimalFullBody.setIcon(new ImageIcon(getWinkImage()));
@@ -189,6 +223,32 @@ public class AnimalView extends JPanel implements Observer, Runnable {
                 }
                 catch (Exception e) {
                     e.printStackTrace();
+                }
+            }
+            if (this.animal.getState()==1) {
+                this.action =false;
+                while (this.action==false) {
+                    try {
+                        Thread.sleep(300);
+                        this.iAnimalFullBody.setIcon(new ImageIcon(getWinkImage()));
+                        if (this.action==true)
+                            break;
+                        Thread.sleep(300);
+                        if (this.action==true)
+                            break;
+                        this.iAnimalFullBody.setIcon(new ImageIcon(getSleepImage1()));
+                        if (this.action==true)
+                            break;
+                         Thread.sleep(300);
+                        if (this.action==true)
+                            break;
+                        this.iAnimalFullBody.setIcon(new ImageIcon(getSleepImage2()));
+                        if (this.action==true)
+                            break;
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             //suatu aksi sedang dilakukan

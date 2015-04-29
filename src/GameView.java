@@ -27,6 +27,17 @@ public class GameView extends JPanel implements Observer, Runnable {
     public void setAnimalView(AnimalView animalView) {
         this.animalView = animalView;
         tAnimal.setText(this.animalView.getAnimal().getName());
+        if (this.animalView.getAnimal().getState()==1) { //sedang tidur
+            this.bSleep.setIcon(new javax.swing.ImageIcon("../design/bWake.png"));
+            this.bFeed.setEnabled(false);
+            this.bClean.setEnabled(false);
+            this.bPlay.setEnabled(false);
+        } else {
+            this.bSleep.setIcon(new javax.swing.ImageIcon("../design/bSleep.png"));
+            this.bFeed.setEnabled(true);
+            this.bClean.setEnabled(true);
+            this.bPlay.setEnabled(true);
+        }
     }
     
     public JButton getMainMenuButton() {
@@ -111,6 +122,7 @@ public class GameView extends JPanel implements Observer, Runnable {
         bFeed.setIcon(new javax.swing.ImageIcon("../design/bFeed.png")); // NOI18N
         bFeed.setContentAreaFilled(false);
         bFeed.setFocusPainted(false);
+        bFeed.setBorderPainted(false);
         bFeed.setPreferredSize(new java.awt.Dimension(133, 46));
         bFeed.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -292,6 +304,20 @@ public class GameView extends JPanel implements Observer, Runnable {
 
     private void bSleepMouseClicked(java.awt.event.MouseEvent evt) {                                    
         // TODO add your handling code here:
+        if (this.animalView.getAnimal().getState()==0) { //sedang bangun
+            this.animalView.getAnimal().sleep();
+            this.bSleep.setIcon(new javax.swing.ImageIcon("../design/bWake.png"));
+            this.bFeed.setEnabled(false);
+            this.bClean.setEnabled(false);
+            this.bPlay.setEnabled(false);
+        } else {
+            this.animalView.getAnimal().wakeUp();
+            this.bSleep.setIcon(new javax.swing.ImageIcon("../design/bSleep.png"));
+            this.bFeed.setEnabled(true);
+            this.bClean.setEnabled(true);
+            this.bPlay.setEnabled(true);
+        }
+        
         
     }
     

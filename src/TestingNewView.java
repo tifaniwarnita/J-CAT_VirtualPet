@@ -24,23 +24,28 @@ public class TestingNewView {
         /* Create and display the form */
         JLayeredPane lpane = new JLayeredPane();
         JFrame frame = new JFrame();
+        frame.setSize(new Dimension(800,480));        
         frame.setLayout(new BorderLayout());
         frame.add(lpane, BorderLayout.CENTER);
         lpane.setBounds(0, 0, 800, 480);
         
         Player player = new Player("Tifani");
-        player.getPet().loadAnimal("Bruno", "Dog", 60, 60, 60, 60, 0);
+        player.getPet().loadAnimal("Quinsy", "Cat", 60, 60, 60, 60, 1);
         
         AnimalView catObserver = new AnimalView();
         player.getPet().registerObserver(catObserver);
+        System.out.println("STATUS PET: " + player.getPet().getState());
         
         StatusView statusObserver = new StatusView();
         player.getPet().registerObserver(statusObserver);
+        System.out.println("STATUS PET: " + player.getPet().getState());
         
         GameView game = new GameView();
         player.registerObserver(game);
-        game.setAnimalView(catObserver);
         
+        System.out.println("STATUS PET: " + player.getPet().getState());
+        game.setAnimalView(catObserver);
+        System.out.println("STATUS PET: " + player.getPet().getState());
         
         game.setBounds(0, 0, 800, 480);
         game.setOpaque(true);
@@ -50,7 +55,6 @@ public class TestingNewView {
         lpane.add(game, new Integer(0),0);
         lpane.add(catObserver, new Integer(1), 0);
         lpane.add(statusObserver, new Integer(2), 0);
-        frame.setSize(new Dimension(800,480));        
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

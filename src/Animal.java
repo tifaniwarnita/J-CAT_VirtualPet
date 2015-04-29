@@ -239,6 +239,19 @@ public class Animal implements Subject, Runnable {
         this.changed = true;
         notifyObservers("Reduce status");
     }
+    
+    public void reduceStatusWhenSleep() {
+        if (this.getHunger()>0)
+            this.setHunger(this.getHunger()-1);
+        if (this.getHappiness()>0)
+            this.setHappiness(this.getHappiness()-1);
+        if (this.getHygiene()>0)
+            this.setHygiene(this.getHygiene()-1);
+        if (this.getHealth()<100)
+            this.setHealth(this.getHealth()+5);
+        this.changed = true;
+        notifyObservers("Reduce status");
+    }
 
     @Override
     public void registerObserver(Observer obj) {
@@ -291,12 +304,36 @@ public class Animal implements Subject, Runnable {
     @Override
     public void run() {
         while(true) {
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Animal.class.getName()).log(Level.SEVERE, null, ex);
+            while (this.state==0) {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Animal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (this.state==1)
+                    break;
+                reduceAllStatus();
             }
-            reduceAllStatus();
+            while (this.state==1) { //sleep mode
+                try {
+                    Thread.sleep(2500);
+                    if (this.state==0)
+                        break;
+                    Thread.sleep(2500);
+                    if (this.state==0)
+                        break;
+                    Thread.sleep(2500);
+                    if (this.state==0)
+                        break;
+                    Thread.sleep(2500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Animal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (this.state==0)
+                    break;
+                reduceStatusWhenSleep();
+            }
+            
         }
     }
 }
