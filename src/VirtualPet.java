@@ -1,3 +1,4 @@
+package Menu;
 
 import java.io.*;
 import java.util.*;
@@ -5,16 +6,18 @@ import java.text.*;
 
 public class VirtualPet {
 	private Player player;
-	private MenuView view;
 	
 	public VirtualPet(){
 		player = new Player();
-		view = new MenuView();
 	}
 	
 	public void newGame(String playerName, String petName, String animalType){
 		player.setPlayerName(playerName);
 		player.adoptPet(petName,animalType);
+		player.getPet().setHappiness(100);
+		player.getPet().setHealth(100);
+		player.getPet().setHunger(100);
+		player.getPet().setHygiene(100);
 	}
 	
 	public void loadGame(String fileName) throws Exception {
@@ -63,7 +66,7 @@ public class VirtualPet {
 		if (hygiene < 5)
 			hygiene = 5;
 		
-		
+		in.close();
 		player.loadPlayer(playerName, _coins, toylevel, soaplevel, foodlevel, foodqty);
 		player.getPet().loadAnimal (animalName, type, hunger, happiness, health, hygiene, state);
 	}
@@ -83,8 +86,8 @@ public class VirtualPet {
 		 file.println(dateFormat.format(date)); // line 3
 		 //print semua state
 		 file.println(player.getCoins()); // line 4
-		 file.println(player.getToy()); // line 5
-		 file.println(player.getSoap()); // line 6
+		 file.println(player.getToy().getLevel()); // line 5
+		 file.println(player.getSoap().getLevel()); // line 6
 		 file.println(player.getFood().getLevel()); // line 7
 		 file.println(player.getFood().getQuantity()); // line 8
 		 file.println(player.getPet().getType()); //line 9
@@ -96,6 +99,24 @@ public class VirtualPet {
 		 file.close();
 		
 	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
 	
-	
+	public static void main(String[] args) {
+		VirtualPet pet = new VirtualPet();
+		try {
+			pet.loadGame("C:\\Users\\User\\workspace1\\VirtualPet\\Candy_Lala.txt");
+			System.out.println(pet.getPlayer().getPlayerName());
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error");
+		}
+		
+	}
 }
