@@ -22,7 +22,10 @@ public class Player implements Subject {
     public Player() {
         this.coins = 0;
         this.playerName = "";
+<<<<<<< HEAD
         this.pet = new Animal();
+=======
+>>>>>>> origin/master
         productCollection.add(new Toy());
         productCollection.add(new Soap());
         productCollection.add(new Food());
@@ -30,7 +33,10 @@ public class Player implements Subject {
     public Player(String name) {
         this.coins = 0;
         this.playerName = name;
+<<<<<<< HEAD
         this.pet = new Animal();
+=======
+>>>>>>> origin/master
         productCollection.add(new Toy());
         productCollection.add(new Soap());
         productCollection.add(new Food());
@@ -59,7 +65,11 @@ public class Player implements Subject {
     }
     
     void adoptPet (String _name, String _type) {
+<<<<<<< HEAD
         this.pet.setAnimal(_name, _type);
+=======
+        setPet(new Animal(_name, _type));
+>>>>>>> origin/master
     }
     
     void feedPet() {
@@ -68,9 +78,15 @@ public class Player implements Subject {
             getPet().eatFood(getFood());
             getFood().updateQuantity(-1);
             setCoins(getCoins()+rand.nextInt(getFood().getLevel()*5)+1);
+<<<<<<< HEAD
             notifyObservers("FEEDPET");
         } else
             notifyObservers("Not enough food");
+=======
+            changed = true;
+            notifyObservers("FEEDPET");
+        }
+>>>>>>> origin/master
     }
     
     void cleanPet() {
