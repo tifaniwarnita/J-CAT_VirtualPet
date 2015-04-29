@@ -1,6 +1,8 @@
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /*
@@ -25,9 +27,13 @@ public class GameView extends JPanel implements Observer, Runnable {
     public void setAnimalView(AnimalView animalView) {
         this.animalView = animalView;
     }
-
-    public void initialize() {
-        initComponents();
+    
+    public JButton getMainMenuButton() {
+        return this.bMainMenu;
+    }
+    
+    public JButton getInventoryButton() {
+        return this.bInventory;
     }
     
     public Player getPlayer() {
@@ -35,19 +41,19 @@ public class GameView extends JPanel implements Observer, Runnable {
     }
     
     @Override
-    public void update(Object args) {
+    public void update(String args) {
         //masih belum yang upgrade2 atau tidur
-        tHungerIndex.setText("Hunger: " + this.animalView.getAnimal().getHunger());
-        tHappinessIndex.setText("Happiness: " + this.animalView.getAnimal().getHappiness());
-        tHygieneIndex.setText("Hgygiene: " + this.animalView.getAnimal().getHygiene());
-        tHealthIndex.setText("Health: " + this.animalView.getAnimal().getHealth());
         tCoins.setText(String.valueOf(this.player.getCoins()));
         this.action = true;
+        if (args.equals("Not enough coins")) {
+            JOptionPane.showMessageDialog(this, "Not enough coins", "Cannot feed pet", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     @Override
     public void setSubject(Subject sub) {
         this.player = (Player) sub;
+        initComponents();
     }
     
     /**
@@ -58,66 +64,40 @@ public class GameView extends JPanel implements Observer, Runnable {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-
-        tAnimal = new javax.swing.JLabel();
-        bMainMenu = new javax.swing.JButton();
-        bInventory = new javax.swing.JButton();
-        iCoins = new javax.swing.JLabel();
-        tCoins = new javax.swing.JLabel();
         bPlay = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         bFeed = new javax.swing.JButton();
         bClean = new javax.swing.JButton();
-        bSleep = new javax.swing.JButton();
-        iAnimalFullBody = new javax.swing.JLabel();
-        tHelloText = new javax.swing.JLabel();
-        tHungerIndex = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        tHappinessIndex = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        tHygieneIndex = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        tHealthIndex = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        bSleep = new javax.swing.JButton();
+        tHelloText = new javax.swing.JLabel();
+        tAnimal = new javax.swing.JLabel();
+        bMainMenu = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        bInventory = new javax.swing.JButton();
+        iCoins = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        tCoins = new javax.swing.JLabel();
+        bPlay = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        bFeed = new javax.swing.JButton();
+        bClean = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        bSleep = new javax.swing.JButton();
+        tHelloText = new javax.swing.JLabel();
+        tAnimal = new javax.swing.JLabel();
+        bMainMenu = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        bInventory = new javax.swing.JButton();
+        iCoins = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        tCoins = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 235));
-        setPreferredSize(new java.awt.Dimension(800, 480));
-
-        tAnimal.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 48)); // NOI18N
-        tAnimal.setForeground(new java.awt.Color(58, 65, 141));
-        tAnimal.setText(this.animalView.getAnimal().getName());
-
-        bMainMenu.setIcon(new javax.swing.ImageIcon("../design/bMainMenu.png")); // NOI18N
-        bMainMenu.setContentAreaFilled(false);
-        bMainMenu.setBorderPainted(false);
-        bMainMenu.setPreferredSize(new java.awt.Dimension(159, 65));
-        bMainMenu.setFocusPainted(false);
-        bMainMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bMainMenuMouseClicked(evt);
-            }
-        });
-
-        bInventory.setIcon(new javax.swing.ImageIcon("../design/bInventory.png")); // NOI18N
-        bInventory.setContentAreaFilled(false);
-        bInventory.setBorderPainted(false);
-        bInventory.setPreferredSize(new java.awt.Dimension(159, 65));
-        bInventory.setFocusPainted(false);
-        bInventory.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bInventoryMouseClicked(evt);
-            }
-        });
-
-        iCoins.setIcon(new javax.swing.ImageIcon("../design/Coins.png")); // NOI18N
-
-        tCoins.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 36)); // NOI18N
-        tCoins.setForeground(new java.awt.Color(233, 181, 70));
-        tCoins.setText(String.valueOf(this.player.getCoins()));
-
         bPlay.setIcon(new javax.swing.ImageIcon("../design/bPlay.png")); // NOI18N
         bPlay.setContentAreaFilled(false);
-        bPlay.setBorderPainted(false);
         bPlay.setFocusPainted(false);
+        bPlay.setBorderPainted(false);
         bPlay.setPreferredSize(new java.awt.Dimension(133, 46));
         bPlay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -125,9 +105,10 @@ public class GameView extends JPanel implements Observer, Runnable {
             }
         });
 
+        jLabel5.setIcon(new javax.swing.ImageIcon("../design/Status/Blank.png")); // NOI18N
+
         bFeed.setIcon(new javax.swing.ImageIcon("../design/bFeed.png")); // NOI18N
         bFeed.setContentAreaFilled(false);
-        bFeed.setBorderPainted(false);
         bFeed.setFocusPainted(false);
         bFeed.setPreferredSize(new java.awt.Dimension(133, 46));
         bFeed.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -147,10 +128,12 @@ public class GameView extends JPanel implements Observer, Runnable {
             }
         });
 
+        jLabel6.setIcon(new javax.swing.ImageIcon("../design/Status/Blank.png")); // NOI18N
+
         bSleep.setIcon(new javax.swing.ImageIcon("../design/bSleep.png")); // NOI18N
         bSleep.setContentAreaFilled(false);
-        bSleep.setBorderPainted(false);
         bSleep.setFocusPainted(false);
+        bSleep.setBorderPainted(false);
         bSleep.setPreferredSize(new java.awt.Dimension(133, 46));
         bSleep.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -158,35 +141,97 @@ public class GameView extends JPanel implements Observer, Runnable {
             }
         });
 
-        iAnimalFullBody.setIcon(new javax.swing.ImageIcon(this.animalView.getDefaultImage())); // NOI18N
+        tHelloText.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 36)); // NOI18N
+        tHelloText.setForeground(new java.awt.Color(186, 95, 125));
+        tHelloText.setText("Hello,");
+
+        tAnimal.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 48)); // NOI18N
+        tAnimal.setForeground(new java.awt.Color(58, 65, 141));
+        tAnimal.setText("Fluffy");
+
+        bMainMenu.setIcon(new javax.swing.ImageIcon("../design/bMainMenu.png")); // NOI18N
+        bMainMenu.setContentAreaFilled(false);
+        bMainMenu.setFocusPainted(false);
+        bMainMenu.setBorderPainted(false);
+        bMainMenu.setPreferredSize(new java.awt.Dimension(159, 65));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon("../design/Status/Blank.png")); // NOI18N
+
+        bInventory.setIcon(new javax.swing.ImageIcon("../design/bInventory.png")); // NOI18N
+        bInventory.setBorderPainted(false);
+        bInventory.setContentAreaFilled(false);
+        bInventory.setFocusPainted(false);
+        bInventory.setPreferredSize(new java.awt.Dimension(159, 65));
+
+        iCoins.setIcon(new javax.swing.ImageIcon("../design/Coins.png")); // NOI18N
+
+        jLabel4.setIcon(new javax.swing.ImageIcon("../design/Status/Blank.png")); // NOI18N
+
+        tCoins.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 36)); // NOI18N
+        tCoins.setForeground(new java.awt.Color(233, 181, 70));
+        tCoins.setText("125");
+
+        bPlay.setIcon(new javax.swing.ImageIcon("../design/bPlay.png")); // NOI18N
+        bPlay.setContentAreaFilled(false);
+        bPlay.setBorderPainted(false);
+        bPlay.setFocusPainted(false);
+        bPlay.setPreferredSize(new java.awt.Dimension(133, 46));
+        bPlay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bPlayMouseClicked(evt);
+            }
+        });
+
+        jLabel5.setIcon(new javax.swing.ImageIcon("../design/Status/Blank.png")); // NOI18N
+
+        bFeed.setIcon(new javax.swing.ImageIcon("../design/bFeed.png")); // NOI18N
+        bFeed.setContentAreaFilled(false);
+        bFeed.setBorderPainted(false);
+        bFeed.setFocusPainted(false);
+        bFeed.setPreferredSize(new java.awt.Dimension(133, 46));
+        bFeed.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bFeedMouseClicked(evt);
+            }
+        });
+
+        bClean.setIcon(new javax.swing.ImageIcon("../design/bClean.png")); // NOI18N
+        bClean.setContentAreaFilled(false);
+        bClean.setPreferredSize(new java.awt.Dimension(133, 46));
+        bClean.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bCleanMouseClicked(evt);
+            }
+        });
+
+        jLabel6.setIcon(new javax.swing.ImageIcon("../design/Status/Blank.png")); // NOI18N
+
+        bSleep.setIcon(new javax.swing.ImageIcon("../design/bSleep.png")); // NOI18N
+        bSleep.setContentAreaFilled(false);
+        bSleep.setPreferredSize(new java.awt.Dimension(133, 46));
+        bSleep.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bSleepMouseClicked(evt);
+            }
+        });
 
         tHelloText.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 36)); // NOI18N
         tHelloText.setForeground(new java.awt.Color(186, 95, 125));
-        tHelloText.setText("Hello, " + this.player.getPlayerName());
+        tHelloText.setText("Hello,");
 
-        tHungerIndex.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        tHungerIndex.setForeground(new java.awt.Color(58, 65, 141));
-        tHungerIndex.setText("Hunger: " + this.animalView.getAnimal().getHunger());
+        tAnimal.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 48)); // NOI18N
+        tAnimal.setForeground(new java.awt.Color(58, 65, 141));
+        tAnimal.setText("Fluffy");
+   
+        jLabel7.setIcon(new javax.swing.ImageIcon("../design/Status/Blank.png")); // NOI18N
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("../design/progressBar.png")); // NOI18N
+        iCoins.setIcon(new javax.swing.ImageIcon("../design/Coins.png")); // NOI18N
 
-        tHappinessIndex.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        tHappinessIndex.setForeground(new java.awt.Color(58, 65, 141));
-        tHappinessIndex.setText("Happiness: " + this.animalView.getAnimal().getHappiness());
+        jLabel8.setIcon(new javax.swing.ImageIcon("../design/Status/Blank.png")); // NOI18N
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("../design/progressBar.png")); // NOI18N
-
-        tHygieneIndex.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        tHygieneIndex.setForeground(new java.awt.Color(58, 65, 141));
-        tHygieneIndex.setText("Hgygiene: " + this.animalView.getAnimal().getHygiene());
-
-        jLabel5.setIcon(new javax.swing.ImageIcon("../design/progressBar.png")); // NOI18N
-
-        tHealthIndex.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        tHealthIndex.setForeground(new java.awt.Color(58, 65, 141));
-        tHealthIndex.setText("Health: " + this.animalView.getAnimal().getHealth());
-
-        jLabel6.setIcon(new javax.swing.ImageIcon("../design/progressBar.png")); // NOI18N
+        tCoins.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 36)); // NOI18N
+        tCoins.setForeground(new java.awt.Color(233, 181, 70));
+        tCoins.setText("125");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -196,110 +241,75 @@ public class GameView extends JPanel implements Observer, Runnable {
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(tHelloText)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)
+                        .addComponent(iCoins)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tCoins))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bFeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(bInventory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(iCoins)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tCoins))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(bFeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tHungerIndex)
-                                    .addComponent(jLabel3)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(bMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(17, 17, 17)
-                                .addComponent(bInventory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bClean, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bPlay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bSleep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tHygieneIndex)
-                                    .addComponent(jLabel5)
-                                    .addComponent(tHappinessIndex)
-                                    .addComponent(jLabel4)
-                                    .addComponent(tHealthIndex)
-                                    .addComponent(jLabel6))))
+                            .addComponent(bClean, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bPlay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bSleep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                                .addComponent(iAnimalFullBody, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(136, 136, 136)
-                                .addComponent(tAnimal)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel6)))
+                    .addComponent(tHelloText))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addComponent(tAnimal)
+                .addGap(143, 143, 143))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tHelloText)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tAnimal)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(bMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(bInventory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(tAnimal)
+                        .addGap(350, 350, 350))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tHelloText)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bInventory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(iCoins)
                             .addComponent(tCoins))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tHungerIndex)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(bFeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(10, 10, 10)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(bFeed, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tHappinessIndex, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4))
+                            .addComponent(jLabel8)
                             .addComponent(bPlay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tHygieneIndex, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5))
+                            .addComponent(jLabel5)
                             .addComponent(bClean, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tHealthIndex, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6))
-                            .addComponent(bSleep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 17, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(iAnimalFullBody, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                            .addComponent(jLabel6)
+                            .addComponent(bSleep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
-    }// </editor-fold>                        
-
-    private void bMainMenuMouseClicked(java.awt.event.MouseEvent evt) {                                       
-        // TODO add your handling code here:
-    }                                      
-
-    private void bInventoryMouseClicked(java.awt.event.MouseEvent evt) {                                        
-        // TODO add your handling code here:
-    }                                       
+        jLabel5.setVisible(false);
+        jLabel6.setVisible(false);
+        jLabel7.setVisible(false);
+        jLabel8.setVisible(false);
+    }// </editor-fold>                                                        
 
     private void bFeedMouseClicked(java.awt.event.MouseEvent evt) {                                   
         // TODO add your handling code here:
@@ -319,55 +329,11 @@ public class GameView extends JPanel implements Observer, Runnable {
     private void bSleepMouseClicked(java.awt.event.MouseEvent evt) {                                    
         // TODO add your handling code here:
         
-    }              
+    }
     
     @Override
     public void run() {
-        while (true) {
-            while (this.action==false) {
-                try {
-                    Thread.sleep(2000);
-                    this.iAnimalFullBody.setIcon(new ImageIcon(this.animalView.getWinkImage()));
-                    if (this.action==true)
-                        break;
-                    repaint();
-                    Thread.sleep(500);
-                    if (this.action==true)
-                        break;
-                    this.iAnimalFullBody.setIcon(new ImageIcon(this.animalView.getDefaultImage()));
-                    if (this.action==true)
-                        break;
-                    repaint();
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            //suatu aksi sedang dilakukan
-            try {
-                tHungerIndex.setText("Hunger: " + this.animalView.getAnimal().getHunger());
-                tHappinessIndex.setText("Happiness: " + this.animalView.getAnimal().getHappiness());
-                tHygieneIndex.setText("Hgygiene: " + this.animalView.getAnimal().getHygiene());
-                tHealthIndex.setText("Health: " + this.animalView.getAnimal().getHealth());
-                Thread.sleep(300);
-                this.iAnimalFullBody.setIcon(new ImageIcon(this.animalView.getSatisfiedImage1()));
-                repaint();
-                Thread.sleep(300);
-                this.iAnimalFullBody.setIcon(new ImageIcon(this.animalView.getSatisfiedImage2()));
-                repaint();
-                Thread.sleep(800);
-                this.iAnimalFullBody.setIcon(new ImageIcon(this.animalView.getSatisfiedImage1()));
-                repaint();
-                Thread.sleep(300);
-                this.iAnimalFullBody.setIcon(new ImageIcon(this.animalView.getDefaultImage()));
-                repaint();
-                this.action = false;
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        
+
     }
 
 
@@ -379,18 +345,15 @@ public class GameView extends JPanel implements Observer, Runnable {
     private javax.swing.JButton bPlay;
     private javax.swing.JButton bSleep;
     private javax.swing.JLabel iCoins;
-    private javax.swing.JLabel iAnimalFullBody;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel tAnimal;
     private javax.swing.JLabel tCoins;
-    private javax.swing.JLabel tHappinessIndex;
-    private javax.swing.JLabel tHealthIndex;
     private javax.swing.JLabel tHelloText;
-    private javax.swing.JLabel tHungerIndex;
-    private javax.swing.JLabel tHygieneIndex;
     // End of variables declaration 
     
 }

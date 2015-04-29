@@ -23,8 +23,8 @@ public class Player implements Subject {
         this.coins = 0;
         this.playerName = "";
         this.pet = new Animal();
-        Thread th = new Thread(pet);
-        th.start();
+        //Thread th = new Thread(pet);
+        //th.start();
         productCollection.add(new Toy());
         productCollection.add(new Soap());
         productCollection.add(new Food());
@@ -33,8 +33,8 @@ public class Player implements Subject {
         this.coins = 0;
         this.playerName = name;
         this.pet = new Animal();
-        Thread th = new Thread(pet);
-        th.start();
+        //Thread th = new Thread(pet);
+        //th.start();
         productCollection.add(new Toy());
         productCollection.add(new Soap());
         productCollection.add(new Food());
@@ -74,7 +74,8 @@ public class Player implements Subject {
             //setCoins(getCoins()+rand.nextInt((int)(getFood().getCurrentPrice()*1.5))+1);
             changed = true;
             notifyObservers("FEEDPET");
-        }
+        } else
+            notifyObservers("Not enough coins");
     }
     
     void cleanPet() {
