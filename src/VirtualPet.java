@@ -12,13 +12,9 @@ public class VirtualPet {
 		view = new MenuView();
 	}
 	
-	public void newGame(){
-		Scanner scan = new Scanner(System.in);
-		String playerName = scan.nextLine();
+	public void newGame(String playerName, String petName, String animalType){
 		player.setPlayerName(playerName);
-		String animalName = scan.nextLine();
-		String animalType = scan.nextLine();
-		player.adoptPet(animalName, animalType);
+		player.adoptPet(petName,animalType);
 	}
 	
 	public void loadGame(String fileName) throws Exception {
@@ -101,21 +97,5 @@ public class VirtualPet {
 		
 	}
 	
-	public void help(){
-		//TO-DO
-	}
-	
-	public void exitGame(){
-		// TO-DO ask to save game
-	}
-	public void notifyObserver(){
-		
-	}
-	public void registerObserver(){
-		
-	}
-	public void unregisterObserver(){
-		
-	}
 	
 }

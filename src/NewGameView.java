@@ -19,7 +19,7 @@ public class NewGameView extends JPanel {
      */
 	private String playerName;
     private String petName;
-    private int petType = 0;
+    private String petType;
 	
     public NewGameView() {
         initComponents();
@@ -166,7 +166,7 @@ public class NewGameView extends JPanel {
     }
     
     private void startButtonMouseClicked(java.awt.event.MouseEvent evt) {
-    	if (inPlayerName.getText().equals("") || inPlayerName.getText().equals("") || petType == 0){
+    	if (inPlayerName.getText().equals("") || inPlayerName.getText().equals("") || petType.equals("")){
     		 JOptionPane.showMessageDialog(this,
                      "Please complete the form to continue",
                      "Incomplete Form",
@@ -183,7 +183,7 @@ public class NewGameView extends JPanel {
     	chooseDogButton.setIcon(new javax.swing.ImageIcon("design\\Choose\\Dog\\choose.png"));
     	chooseCatButton.setIcon(new javax.swing.ImageIcon("design\\Choose\\Cat\\chosen.png"));
     	
-    	petType = 1;
+    	petType = "Cat";
         
         
     }
@@ -191,7 +191,7 @@ public class NewGameView extends JPanel {
     private void chooseDogButtonMouseClicked(java.awt.event.MouseEvent evt) {
     	chooseCatButton.setIcon(new javax.swing.ImageIcon("design\\Choose\\Cat\\choose.png"));
     	chooseDogButton.setIcon(new javax.swing.ImageIcon("design\\Choose\\Dog\\chosen.png"));
-    	petType = 2;
+    	petType = "Dog";
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
