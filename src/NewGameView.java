@@ -173,8 +173,8 @@ public class NewGameView extends JPanel {
                      JOptionPane.WARNING_MESSAGE);
     	}
     	else {
-    		playerName = inPlayerName.getText();
-    		petName = inPetName.getText();
+    		setPlayerName(inPlayerName.getText());
+    		setPetName(inPetName.getText());
     		//pindah panel
     	}
     }
@@ -182,8 +182,7 @@ public class NewGameView extends JPanel {
     private void chooseCatButtonMouseClicked(java.awt.event.MouseEvent evt) {
     	chooseDogButton.setIcon(new javax.swing.ImageIcon("design\\Choose\\Dog\\choose.png"));
     	chooseCatButton.setIcon(new javax.swing.ImageIcon("design\\Choose\\Cat\\chosen.png"));
-    	
-    	petType = "Cat";
+    	setPetType("Cat");
         
         
     }
@@ -191,10 +190,37 @@ public class NewGameView extends JPanel {
     private void chooseDogButtonMouseClicked(java.awt.event.MouseEvent evt) {
     	chooseCatButton.setIcon(new javax.swing.ImageIcon("design\\Choose\\Cat\\choose.png"));
     	chooseDogButton.setIcon(new javax.swing.ImageIcon("design\\Choose\\Dog\\chosen.png"));
-    	petType = "Dog";
+    	setPetType("Dog");
     }
+    
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    public String getPlayerName() {
+		return playerName;
+	}
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
+
+	public String getPetName() {
+		return petName;
+	}
+
+	public void setPetName(String petName) {
+		this.petName = petName;
+	}
+
+	public String getPetType() {
+		return petType;
+	}
+
+	public void setPetType(String petType) {
+		this.petType = petType;
+	}
+
+
+
+	// Variables declaration - do not modify//GEN-BEGIN:variables
     private JLabel newGameTitle;
     private JLabel enterPlayer;
     private JLabel choosePet;
