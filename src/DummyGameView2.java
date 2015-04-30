@@ -40,19 +40,16 @@ public class DummyGameView2 extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         tCoins = new javax.swing.JLabel();
         bPlay1 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         bFeed1 = new javax.swing.JButton();
         bClean1 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
         bSleep1 = new javax.swing.JButton();
         tHelloText1 = new javax.swing.JLabel();
         tAnimal1 = new javax.swing.JLabel();
         bMainMenu1 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
         bInventory1 = new javax.swing.JButton();
         iCoins1 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         tCoins1 = new javax.swing.JLabel();
+        bCamera = new javax.swing.JButton();
 
         bPlay.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\bPlay.png")); // NOI18N
         bPlay.setContentAreaFilled(false);
@@ -132,7 +129,9 @@ public class DummyGameView2 extends javax.swing.JPanel {
         tCoins.setText("125");
 
         bPlay1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\bPlay.png")); // NOI18N
+        bPlay1.setBorderPainted(false);
         bPlay1.setContentAreaFilled(false);
+        bPlay1.setFocusPainted(false);
         bPlay1.setPreferredSize(new java.awt.Dimension(133, 46));
         bPlay1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -140,10 +139,10 @@ public class DummyGameView2 extends javax.swing.JPanel {
             }
         });
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\progressBar.png")); // NOI18N
-
         bFeed1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\bFeed.png")); // NOI18N
+        bFeed1.setBorderPainted(false);
         bFeed1.setContentAreaFilled(false);
+        bFeed1.setFocusPainted(false);
         bFeed1.setPreferredSize(new java.awt.Dimension(133, 46));
         bFeed1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -152,7 +151,9 @@ public class DummyGameView2 extends javax.swing.JPanel {
         });
 
         bClean1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\bClean.png")); // NOI18N
+        bClean1.setBorderPainted(false);
         bClean1.setContentAreaFilled(false);
+        bClean1.setFocusPainted(false);
         bClean1.setPreferredSize(new java.awt.Dimension(133, 46));
         bClean1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -160,10 +161,10 @@ public class DummyGameView2 extends javax.swing.JPanel {
             }
         });
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\progressBar.png")); // NOI18N
-
         bSleep1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\bSleep.png")); // NOI18N
+        bSleep1.setBorderPainted(false);
         bSleep1.setContentAreaFilled(false);
+        bSleep1.setFocusPainted(false);
         bSleep1.setPreferredSize(new java.awt.Dimension(133, 46));
         bSleep1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -180,7 +181,9 @@ public class DummyGameView2 extends javax.swing.JPanel {
         tAnimal1.setText("Fluffy");
 
         bMainMenu1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\bMainMenu.png")); // NOI18N
+        bMainMenu1.setBorderPainted(false);
         bMainMenu1.setContentAreaFilled(false);
+        bMainMenu1.setFocusPainted(false);
         bMainMenu1.setPreferredSize(new java.awt.Dimension(159, 65));
         bMainMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -188,11 +191,10 @@ public class DummyGameView2 extends javax.swing.JPanel {
             }
         });
 
-        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\progressBar.png")); // NOI18N
-
         bInventory1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\bInventory.png")); // NOI18N
         bInventory1.setBorderPainted(false);
         bInventory1.setContentAreaFilled(false);
+        bInventory1.setFocusPainted(false);
         bInventory1.setPreferredSize(new java.awt.Dimension(159, 65));
         bInventory1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -202,11 +204,15 @@ public class DummyGameView2 extends javax.swing.JPanel {
 
         iCoins1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\Coins.png")); // NOI18N
 
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\progressBar.png")); // NOI18N
-
         tCoins1.setFont(new java.awt.Font("GrilledCheese BTN Toasted", 0, 36)); // NOI18N
         tCoins1.setForeground(new java.awt.Color(233, 181, 70));
         tCoins1.setText("125");
+
+        bCamera.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tifani\\Documents\\Tifani Warnita\\Schools - College\\ITB\\HMIF ITB\\Informatics Engineering\\Semester 4\\2014\\OOP - Pemrograman Berorientasi Objek\\J-CAT_VirtualPet\\design\\bCamera.png")); // NOI18N
+        bCamera.setToolTipText("");
+        bCamera.setBorderPainted(false);
+        bCamera.setContentAreaFilled(false);
+        bCamera.setFocusPainted(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -216,70 +222,64 @@ public class DummyGameView2 extends javax.swing.JPanel {
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(bMainMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
-                        .addComponent(bInventory1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tHelloText1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(iCoins1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tCoins1))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bFeed1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(bClean1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(bPlay1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(bSleep1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel10)
-                                .addComponent(jLabel8)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                .addComponent(tAnimal1)
-                .addGap(143, 143, 143))
+                            .addComponent(bClean1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bSleep1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
+                        .addComponent(tAnimal1)
+                        .addGap(143, 143, 143))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(tHelloText1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bCamera, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bPlay1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(bMainMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(17, 17, 17)
+                                .addComponent(bInventory1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(iCoins1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tCoins1)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(tAnimal1)
-                        .addGap(350, 350, 350))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(41, 57, Short.MAX_VALUE)
+                                .addComponent(tAnimal1)
+                                .addGap(128, 128, 128))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(18, Short.MAX_VALUE)
+                                .addComponent(tHelloText1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bMainMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(bInventory1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(iCoins1)
+                                    .addComponent(tCoins1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                                .addComponent(bFeed1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tHelloText1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bMainMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bInventory1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(iCoins1)
-                            .addComponent(tCoins1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(bFeed1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10)
-                            .addComponent(bPlay1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
-                            .addComponent(bClean1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8)
-                            .addComponent(bSleep1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addComponent(bCamera)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(bPlay1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(bClean1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(bSleep1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -311,10 +311,6 @@ public class DummyGameView2 extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_bPlay1MouseClicked
 
-    private void bFeed1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bFeed1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bFeed1MouseClicked
-
     private void bClean1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bClean1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_bClean1MouseClicked
@@ -331,8 +327,13 @@ public class DummyGameView2 extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_bInventory1MouseClicked
 
+    private void bFeed1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bFeed1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bFeed1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bCamera;
     private javax.swing.JButton bClean;
     private javax.swing.JButton bClean1;
     private javax.swing.JButton bFeed;
@@ -347,14 +348,10 @@ public class DummyGameView2 extends javax.swing.JPanel {
     private javax.swing.JButton bSleep1;
     private javax.swing.JLabel iCoins;
     private javax.swing.JLabel iCoins1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel tAnimal;
     private javax.swing.JLabel tAnimal1;
     private javax.swing.JLabel tCoins;
