@@ -41,6 +41,7 @@ public class VirtualPetSound implements Observer{
                         getClass().getResource("/virtualpet/sound/sleeptheme.wav"));
                 this.clipMain.open(inputStream);
                 this.clipMain.start();
+                this.clipMain.loop(Clip.LOOP_CONTINUOUSLY);
             } catch (Exception e) {
               System.err.println(e.getMessage());
             }

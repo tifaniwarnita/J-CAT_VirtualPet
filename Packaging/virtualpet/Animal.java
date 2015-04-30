@@ -253,8 +253,10 @@ public class Animal implements Subject, Runnable {
             this.setHappiness(this.getHappiness()-1);
         if (this.getHygiene()>0)
             this.setHygiene(this.getHygiene()-1);
-        if (this.getHealth()<95)
+        if (this.getHealth()<100)
             this.setHealth(this.getHealth()+5);
+        if (this.getHealth()>100)
+            this.setHealth(100);
         this.changed = true;
         notifyObservers("Reduce status");
     }
