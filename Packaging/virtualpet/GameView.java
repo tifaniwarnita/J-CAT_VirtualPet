@@ -330,6 +330,12 @@ public class GameView extends JPanel implements Observer, Runnable {
     private void bCameraMouseClicked(java.awt.event.MouseEvent evt) {                                    
         
     } 
+
+    
+
+    public javax.swing.JButton getbCamera() {
+        return bCamera;
+    }
     
     @Override
     public void run() {

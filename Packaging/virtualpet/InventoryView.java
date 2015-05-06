@@ -16,7 +16,6 @@ public class InventoryView extends javax.swing.JPanel implements Observer {
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1525370825761827282L;
 	private Player P;
     /**
      * Creates new form InventoryView
@@ -364,8 +363,7 @@ public class InventoryView extends javax.swing.JPanel implements Observer {
     }//GEN-LAST:event_downButtonMouseClicked
 
 @Override
-    public void update(String obj) {
-        String message = (String)obj;
+    public void update(String message) {
         switch (message) {
         	case "NOTENOUGHCOINS":
         		JOptionPane.showMessageDialog(null,

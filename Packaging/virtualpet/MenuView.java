@@ -23,8 +23,13 @@ public class MenuView extends JFrame {
     private static JButton exitbutton;
 	private static JFrame frame = new JFrame();
 	private static JFrame f;
+    private static JFrame fInventory;
+    private static NewGameView newGame;
+    private static JFrame newGameFrame;
 	private static boolean gameexist;
-        private VirtualPetSound vpSound;
+    private static MenuView menu;
+    private static ImageIcon icon;
+    private VirtualPetSound vpSound;
     
     public MenuView()
     {
@@ -32,8 +37,8 @@ public class MenuView extends JFrame {
         frame.setPreferredSize(new java.awt.Dimension(800,600));
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
-        ImageIcon img = new ImageIcon(getClass().getResource("/virtualpet/design/background.png"));
-        frame.setIconImage(img.getImage());
+        icon = new ImageIcon(getClass().getResource("/virtualpet/design/icon.png"));
+        frame.setIconImage(icon.getImage());
         // Exit the application when user close frame.
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -120,6 +125,8 @@ public class MenuView extends JFrame {
         
         JLayeredPane lpane = new JLayeredPane();
         f = new JFrame();
+        f.setTitle("Virtual Pet");
+        f.setIconImage(icon.getImage());
         f.setSize(new Dimension(800,480));        
         f.setLayout(new BorderLayout());
         f.add(lpane, BorderLayout.CENTER);
@@ -128,7 +135,7 @@ public class MenuView extends JFrame {
         game.setOpaque(true);
         animaView.setBounds(0, 0, 800, 480);
         statusObserver.setBounds(0, 0, 800, 480);
-        
+        setBounds(0,0,800,480);
         lpane.add(game, new Integer(0),0);
         lpane.add(animaView, new Integer(1), 0);
         lpane.add(statusObserver, new Integer(2), 0);
@@ -162,7 +169,9 @@ public class MenuView extends JFrame {
                  //Execute when button is pressed
              	
              	InventoryView inventory = new InventoryView();
-             	JFrame fInventory = new JFrame();
+             	fInventory = new JFrame();
+                fInventory.setTitle("Virtual Pet");
+                fInventory.setIconImage(icon.getImage());
                  fInventory.add(inventory);
                  pet.getPlayer().registerObserver(inventory);
                  inventory.update("OPENINV");
@@ -182,21 +191,63 @@ public class MenuView extends JFrame {
                  });
              }
          });
+
+        game.getbCamera().addActionListener(new ActionListener() {
+             
+            public void actionPerformed(ActionEvent e)
+            {
+                Screenshot S = new Screenshot();
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setDialogTitle("Specify a file to save");   
+                for (int i=0; i<S.getSsplugins().size();i++) {
+                    FileNameExtensionFilter f = new FileNameExtensionFilter(S.getSsplugins().get(i).typeDescription(),S.getSsplugins().get(i).typeExtensions());
+                    fileChooser.setFileFilter(f);
+                }
+                fileChooser.setAcceptAllFileFilterUsed(false);
+                int userSelection = fileChooser.showSaveDialog(null);
+                if (userSelection == JFileChooser.APPROVE_OPTION) {
+                    File file = fileChooser.getSelectedFile();
+                    String path = file.getAbsolutePath();
+                    String[] extensions = ((FileNameExtensionFilter)fileChooser.getFileFilter()).getExtensions();
+                    int i=0;
+                    boolean ext = false;
+                    while (i<extensions.length && !ext)
+                    {
+                      String extension = extensions[i];
+                      if (path.endsWith("."+extension))
+                          ext = true;
+                      else
+                          i++;
+                    }
+                    if (!ext)
+                        file = new File(path + "." + extensions[0]);
+            
+                    for (i=0;i<S.getSsplugins().size();i++) {
+                        if (S.getSsplugins().get(i).isSupported(file)) {
+                            Rectangle rect = f.getBounds();
+                            S.getSsplugins().get(i).saveScreenshot(file,rect);
+                        }
+                    }
+                }
+            }   
+        });
     	
     	
     }
 
     public static void main(String args[])
     {
-        MenuView menu = new MenuView();
+        menu = new MenuView();
         gameexist = false;
         
         newgamebutton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
                 //Execute when button is pressed
-            	NewGameView newGame = new NewGameView();
-            	JFrame newGameFrame = new JFrame();
+            	newGame = new NewGameView();
+            	newGameFrame = new JFrame();
+                newGameFrame.setTitle("Virtual Pet");
+                newGameFrame.setIconImage(icon.getImage());
             	newGameFrame.add(newGame);
             	newGameFrame.setSize(new Dimension(800,480));        
             	newGameFrame.pack();
